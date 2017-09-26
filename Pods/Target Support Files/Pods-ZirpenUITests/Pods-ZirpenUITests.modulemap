@@ -1,0 +1,6 @@
+framework module Pods_ZirpenUITests {
+  umbrella header "Pods-ZirpenUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

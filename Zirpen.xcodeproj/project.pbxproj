@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09730338B1755273244605A0 /* Pods_ZirpenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF3B98A48BA2889664F15A9 /* Pods_ZirpenTests.framework */; };
+		9048CBB61EA188B129F9649D /* Pods_ZirpenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */; };
 		C4BC93521F7B0A06009B4904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC93511F7B0A06009B4904 /* AppDelegate.swift */; };
 		C4BC93541F7B0A06009B4904 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC93531F7B0A06009B4904 /* ViewController.swift */; };
 		C4BC93571F7B0A06009B4904 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4BC93551F7B0A06009B4904 /* Main.storyboard */; };
@@ -14,6 +16,7 @@
 		C4BC935C1F7B0A06009B4904 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4BC935A1F7B0A06009B4904 /* LaunchScreen.storyboard */; };
 		C4BC93671F7B0A06009B4904 /* ZirpenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC93661F7B0A06009B4904 /* ZirpenTests.swift */; };
 		C4BC93721F7B0A06009B4904 /* ZirpenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC93711F7B0A06009B4904 /* ZirpenUITests.swift */; };
+		EE4D6B35537D9B88818F86F2 /* Pods_Zirpen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCF7EAD64FF6605BD221AFD1 /* Pods_Zirpen.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZirpenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E0A4BE083A1AA333D4ED8E3 /* Pods-Zirpen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zirpen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Zirpen/Pods-Zirpen.debug.xcconfig"; sourceTree = "<group>"; };
+		854C293822320DD0097755B3 /* Pods-ZirpenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.release.xcconfig"; sourceTree = "<group>"; };
+		9D038CC5391A3CB64D11854A /* Pods-ZirpenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AAA46FA76586832836ABBE95 /* Pods-ZirpenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C4BC934E1F7B0A06009B4904 /* Zirpen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zirpen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BC93511F7B0A06009B4904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4BC93531F7B0A06009B4904 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +55,10 @@
 		C4BC936D1F7B0A06009B4904 /* ZirpenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZirpenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BC93711F7B0A06009B4904 /* ZirpenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZirpenUITests.swift; sourceTree = "<group>"; };
 		C4BC93731F7B0A06009B4904 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAF3B98A48BA2889664F15A9 /* Pods_ZirpenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZirpenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6C33F32241C323C8D7020D7 /* Pods-ZirpenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E84D54154115ADD1A29C427C /* Pods-Zirpen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zirpen.release.xcconfig"; path = "Pods/Target Support Files/Pods-Zirpen/Pods-Zirpen.release.xcconfig"; sourceTree = "<group>"; };
+		FCF7EAD64FF6605BD221AFD1 /* Pods_Zirpen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zirpen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4D6B35537D9B88818F86F2 /* Pods_Zirpen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09730338B1755273244605A0 /* Pods_ZirpenTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +82,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9048CBB61EA188B129F9649D /* Pods_ZirpenUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B2F3C8341879241067DC79D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCF7EAD64FF6605BD221AFD1 /* Pods_Zirpen.framework */,
+				CAF3B98A48BA2889664F15A9 /* Pods_ZirpenTests.framework */,
+				081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C4BC93451F7B0A06009B4904 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +106,8 @@
 				C4BC93651F7B0A06009B4904 /* ZirpenTests */,
 				C4BC93701F7B0A06009B4904 /* ZirpenUITests */,
 				C4BC934F1F7B0A06009B4904 /* Products */,
+				FBDD1C5CBE688B4C364D0A6C /* Pods */,
+				3B2F3C8341879241067DC79D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +152,19 @@
 			path = ZirpenUITests;
 			sourceTree = "<group>";
 		};
+		FBDD1C5CBE688B4C364D0A6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0E0A4BE083A1AA333D4ED8E3 /* Pods-Zirpen.debug.xcconfig */,
+				E84D54154115ADD1A29C427C /* Pods-Zirpen.release.xcconfig */,
+				9D038CC5391A3CB64D11854A /* Pods-ZirpenTests.debug.xcconfig */,
+				854C293822320DD0097755B3 /* Pods-ZirpenTests.release.xcconfig */,
+				D6C33F32241C323C8D7020D7 /* Pods-ZirpenUITests.debug.xcconfig */,
+				AAA46FA76586832836ABBE95 /* Pods-ZirpenUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +172,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4BC93761F7B0A06009B4904 /* Build configuration list for PBXNativeTarget "Zirpen" */;
 			buildPhases = (
+				5BFD1CA512B1F2520181658C /* [CP] Check Pods Manifest.lock */,
 				C4BC934A1F7B0A06009B4904 /* Sources */,
 				C4BC934B1F7B0A06009B4904 /* Frameworks */,
 				C4BC934C1F7B0A06009B4904 /* Resources */,
+				6C4641832F536CDB6F84B7AC /* [CP] Embed Pods Frameworks */,
+				5606719DDD3C6990AF5BDC16 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4BC93791F7B0A06009B4904 /* Build configuration list for PBXNativeTarget "ZirpenTests" */;
 			buildPhases = (
+				4FEE2D7445DF409EEA7A32D0 /* [CP] Check Pods Manifest.lock */,
 				C4BC935E1F7B0A06009B4904 /* Sources */,
 				C4BC935F1F7B0A06009B4904 /* Frameworks */,
 				C4BC93601F7B0A06009B4904 /* Resources */,
+				51DAF9468A1077CE04DB32D6 /* [CP] Embed Pods Frameworks */,
+				E0D33719B1D850406A03D6A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +213,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C4BC937C1F7B0A06009B4904 /* Build configuration list for PBXNativeTarget "ZirpenUITests" */;
 			buildPhases = (
+				3890005036AB4EC79AD9B314 /* [CP] Check Pods Manifest.lock */,
 				C4BC93691F7B0A06009B4904 /* Sources */,
 				C4BC936A1F7B0A06009B4904 /* Frameworks */,
 				C4BC936B1F7B0A06009B4904 /* Resources */,
+				9AA2103E7A8E8F62E2CCA5A8 /* [CP] Embed Pods Frameworks */,
+				31FB258F1A05304515834914 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,6 +302,158 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31FB258F1A05304515834914 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3890005036AB4EC79AD9B314 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZirpenUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FEE2D7445DF409EEA7A32D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZirpenTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51DAF9468A1077CE04DB32D6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5606719DDD3C6990AF5BDC16 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Zirpen/Pods-Zirpen-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5BFD1CA512B1F2520181658C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Zirpen-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C4641832F536CDB6F84B7AC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Zirpen/Pods-Zirpen-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/BDBOAuth1Manager/BDBOAuth1Manager.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BDBOAuth1Manager.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Zirpen/Pods-Zirpen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9AA2103E7A8E8F62E2CCA5A8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0D33719B1D850406A03D6A2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C4BC934A1F7B0A06009B4904 /* Sources */ = {
@@ -424,6 +625,7 @@
 		};
 		C4BC93771F7B0A06009B4904 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E0A4BE083A1AA333D4ED8E3 /* Pods-Zirpen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -439,6 +641,7 @@
 		};
 		C4BC93781F7B0A06009B4904 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E84D54154115ADD1A29C427C /* Pods-Zirpen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -454,6 +657,7 @@
 		};
 		C4BC937A1F7B0A06009B4904 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D038CC5391A3CB64D11854A /* Pods-ZirpenTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -471,6 +675,7 @@
 		};
 		C4BC937B1F7B0A06009B4904 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 854C293822320DD0097755B3 /* Pods-ZirpenTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -488,6 +693,7 @@
 		};
 		C4BC937D1F7B0A06009B4904 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6C33F32241C323C8D7020D7 /* Pods-ZirpenUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -504,6 +710,7 @@
 		};
 		C4BC937E1F7B0A06009B4904 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAA46FA76586832836ABBE95 /* Pods-ZirpenUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
