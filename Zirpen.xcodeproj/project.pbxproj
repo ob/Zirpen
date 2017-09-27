@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		09730338B1755273244605A0 /* Pods_ZirpenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF3B98A48BA2889664F15A9 /* Pods_ZirpenTests.framework */; };
 		9048CBB61EA188B129F9649D /* Pods_ZirpenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */; };
+		C47659AE1F7C50470019E645 /* tweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47659AD1F7C50470019E645 /* tweetCell.swift */; };
 		C4BC93521F7B0A06009B4904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4BC93511F7B0A06009B4904 /* AppDelegate.swift */; };
 		C4BC93571F7B0A06009B4904 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4BC93551F7B0A06009B4904 /* Main.storyboard */; };
 		C4BC93591F7B0A06009B4904 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4BC93581F7B0A06009B4904 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		854C293822320DD0097755B3 /* Pods-ZirpenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.release.xcconfig"; sourceTree = "<group>"; };
 		9D038CC5391A3CB64D11854A /* Pods-ZirpenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA46FA76586832836ABBE95 /* Pods-ZirpenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C47659AD1F7C50470019E645 /* tweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tweetCell.swift; sourceTree = "<group>"; };
 		C4BC934E1F7B0A06009B4904 /* Zirpen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zirpen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4BC93511F7B0A06009B4904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4BC93561F7B0A06009B4904 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C47659AF1F7C504C0019E645 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C47659AD1F7C50470019E645 /* tweetCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		C4BC93451F7B0A06009B4904 = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 		C4BC93501F7B0A06009B4904 /* Zirpen */ = {
 			isa = PBXGroup;
 			children = (
+				C47659AF1F7C504C0019E645 /* Cells */,
 				C4BC93831F7B2AD1009B4904 /* API */,
 				C4BC93821F7B2AC7009B4904 /* Models */,
 				C4BC937F1F7B1D15009B4904 /* Controllers */,
@@ -496,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C47659AE1F7C50470019E645 /* tweetCell.swift in Sources */,
 				C4BC93851F7B2AE8009B4904 /* User.swift in Sources */,
 				C4BC93871F7B2AF1009B4904 /* Tweet.swift in Sources */,
 				C4BC93811F7B1D32009B4904 /* LoginViewController.swift in Sources */,

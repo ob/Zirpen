@@ -9,6 +9,9 @@
 import UIKit
 
 class User: NSObject, Codable {
+
+    static let userDidLogoutNotification = Notification.Name("UserDidLogout")
+    
     var name: String?
     var screenName: String?
     var profileURL: URL?
@@ -36,8 +39,12 @@ class User: NSObject, Codable {
         }
         set(user) {
             let defaults = UserDefaults.standard
-            let encodedData = try! PropertyListEncoder().encode(user)
-            defaults.set(encodedData, forKey: "currentUser")
+            if let user = user {
+                let encodedData = try! PropertyListEncoder().encode(user)
+                defaults.set(encodedData, forKey: "currentUser")
+            } else {
+                defaults.removeObject(forKey: "currentUser")
+            }
             defaults.synchronize()
         }
     }

@@ -27,6 +27,12 @@ class TwitterClient: BDBOAuth1SessionManager {
             self.loginCompletion?(false, error)
         })
     }
+    
+    func logout() {
+        User.currentUser = nil
+        deauthorize()
+        NotificationCenter.default.post(name: User.userDidLogoutNotification, object: nil)
+    }
 
     func handleURL(url: URL) -> Bool {
         let requestToken = BDBOAuth1Credential(queryString: url.query)

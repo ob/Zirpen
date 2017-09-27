@@ -29,7 +29,7 @@
                                     <action selector="onLoginButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GCR-YM-eic"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uh Oh! There was a problem logging in" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNN-yg-4X2">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Uh Oh! There was a problem logging in" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNN-yg-4X2">
                                 <rect key="frame" x="39" y="161" width="297" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -56,19 +56,67 @@
                     <view key="view" contentMode="scaleToFill" id="guS-yT-gep">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="94K-Zr-8dL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" id="G7X-k4-lXA" customClass="tweetCell" customModule="Zirpen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G7X-k4-lXA" id="T9p-pO-VZn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXQ-6a-rxY">
+                                                    <rect key="frame" x="8" y="4" width="359" height="35.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="iXQ-6a-rxY" secondAttribute="bottom" constant="4" id="ORm-Hp-SVC"/>
+                                                <constraint firstItem="iXQ-6a-rxY" firstAttribute="leading" secondItem="T9p-pO-VZn" secondAttribute="leading" constant="8" id="YcT-8M-Xls"/>
+                                                <constraint firstItem="iXQ-6a-rxY" firstAttribute="top" secondItem="T9p-pO-VZn" secondAttribute="top" constant="4" id="fhP-LW-1ly"/>
+                                                <constraint firstAttribute="trailing" secondItem="iXQ-6a-rxY" secondAttribute="trailing" constant="8" id="z5x-22-UEv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="tweetTextLabel" destination="iXQ-6a-rxY" id="VgC-wZ-ulh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="94K-Zr-8dL" firstAttribute="leading" secondItem="tng-uB-wxn" secondAttribute="leading" id="07G-Bi-tbG"/>
+                            <constraint firstItem="tng-uB-wxn" firstAttribute="bottom" secondItem="94K-Zr-8dL" secondAttribute="bottom" id="ZCZ-zb-3Ic"/>
+                            <constraint firstItem="tng-uB-wxn" firstAttribute="trailing" secondItem="94K-Zr-8dL" secondAttribute="trailing" id="naw-m2-Mb6"/>
+                            <constraint firstItem="94K-Zr-8dL" firstAttribute="top" secondItem="tng-uB-wxn" secondAttribute="top" id="sXs-Z4-qcl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tng-uB-wxn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Da0-YL-KZd"/>
+                    <navigationItem key="navigationItem" id="Da0-YL-KZd">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="iq1-ur-I5n">
+                            <connections>
+                                <action selector="onLogoutButton:" destination="VFo-Tk-mmM" id="XRH-AT-qTq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="94K-Zr-8dL" id="dz1-DR-EjN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Wq-Mr-1Ql" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="51"/>
+            <point key="canvasLocation" x="1685.5999999999999" y="50.824587706146929"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mek-Oh-afG">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dkr-qe-ipX" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="dkr-qe-ipX" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P7Y-2X-lNe">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

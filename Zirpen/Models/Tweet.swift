@@ -9,9 +9,12 @@
 import UIKit
 
 class Tweet: NSObject {
+    
+    var text: String?
 
     init(dictionary: NSDictionary) {
-
+//        print(dictionary)
+        text = dictionary["text"] as? String
     }
 
     class func fromDictionaryArray(dictionaryArray: [NSDictionary]) -> [Tweet] {
