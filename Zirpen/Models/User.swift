@@ -8,7 +8,7 @@
 
 import UIKit
 
-class User: NSObject {
+class User: NSObject, Codable {
     var name: String?
     var screenName: String?
     var profileURL: URL?
@@ -22,6 +22,24 @@ class User: NSObject {
             profileURL = url
         }
         tagline = dictionary["description"] as? String
+    }
+
+    class var currentUser: User? {
+        get {
+            let defaults = UserDefaults.standard
+            if let data = defaults.data(forKey: "currentUser") {
+                let user = try! PropertyListDecoder().decode(User.self, from: data)
+                return user
+            }
+            return nil
+
+        }
+        set(user) {
+            let defaults = UserDefaults.standard
+            let encodedData = try! PropertyListEncoder().encode(user)
+            defaults.set(encodedData, forKey: "currentUser")
+            defaults.synchronize()
+        }
     }
 
 }

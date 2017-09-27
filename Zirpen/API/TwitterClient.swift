@@ -31,7 +31,14 @@ class TwitterClient: BDBOAuth1SessionManager {
     func handleURL(url: URL) -> Bool {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken) in
-            self.loginCompletion?(true, nil)
+            self.authorizedUser(completion: { (user, error) in
+                if let user = user {
+                    User.currentUser = user
+                    self.loginCompletion?(true, nil)
+                } else {
+                    self.loginCompletion?(false, error)
+                }
+            })
         }, failure: { (error) in
             self.loginCompletion?(false, error)
         })
@@ -52,7 +59,7 @@ class TwitterClient: BDBOAuth1SessionManager {
 
     }
 
-    func getUser(completion: @escaping ((User?, Error?) -> Void)) {
+    func authorizedUser(completion: @escaping ((User?, Error?) -> Void)) {
         get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task, response) in
             if let responseDictionary = response as? NSDictionary {
                 let user = User(dictionary: responseDictionary)
