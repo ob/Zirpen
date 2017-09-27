@@ -44,29 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         print(url.description)
-        let requestToken = BDBOAuth1Credential(queryString: url.query)
-        let twitterClient = BDBOAuth1SessionManager(baseURL: URL(string: "https://api.twitter.com")!,
-                                                    consumerKey: "ZuByPvIFnaqRCHS4SgRgIYZ8E",
-                                                    consumerSecret: "cveQTM3xvOtbatFgASRKJZS3AoXjPlWtKMHcfeKnUNmMKSOSXR")
-        twitterClient?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken) in
-            print("I got the access token!")
-            twitterClient?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task, response) in
-                twitterClient?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (task, response) in
-                    let tweets = response as! [NSDictionary]
-                    for tweet in tweets {
-                        print("\(tweet["text"]!)")
-                    }
-                }, failure: { (task, error) in
-
-                })
-            }, failure: { (task, error) in
-                print(error)
-            })
-        }, failure: { (error) in
-            print("Failed: \(error!.localizedDescription)")
-        })
-        return true
+        return TwitterClient.shared.handleURL(url: url)
     }
-
 }
 
