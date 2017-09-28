@@ -12,6 +12,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     var tweets: [Tweet] = [Tweet]()
+    var maxId: Int?
+    var spinner: UIActivityIndicatorView?
+    var isDataLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,16 +22,34 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.delegate = self
         tableView.dataSource = self
         
-        TwitterClient.shared.homeTimeline { (tweets, error) in
+        spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner!.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44)
+        spinner?.stopAnimating()
+        tableView.tableFooterView = spinner
+        
+        loadTweets()
+    }
+
+    func loadTweets() {
+        isDataLoading = true
+        spinner?.startAnimating()
+        TwitterClient.shared.homeTimeline(fromId: maxId) { (tweets, error) in
+            self.isDataLoading = false
+            self.spinner?.stopAnimating()
             if let tweets = tweets {
-                self.tweets = tweets
+                if self.maxId != nil {
+                    self.tweets.append(contentsOf: tweets)
+                } else {
+                    self.tweets = tweets
+                }
+                self.maxId = tweets.last?.id
                 self.tableView.reloadData()
             } else {
                 print("error: \(error!.localizedDescription)")
             }
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -47,6 +68,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         }
         assert(false)
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == tweets.count - 1 && !isDataLoading {
+            loadTweets()
+        }
     }
 
     /*
