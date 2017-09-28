@@ -24,8 +24,8 @@ class tweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             var t:Tweet = tweet!
-            if tweet.retweet! {
-                    t = tweet.retweetedTweet!
+            if tweet.retweetedTweet != nil {
+                t = tweet.retweetedTweet!
                 extraStatusView.isHidden = false
                 if let url = tweet.user?.profileURL {
                     retweetProfileImage.setImageWith(url)
@@ -42,6 +42,20 @@ class tweetCell: UITableViewCell {
             dateIntervalLabel.text = t.prettyInterval
             if let url = t.user?.profileURL {
                 profileImageView.setImageWith(url)
+            }
+            if let media = t.media {
+                switch media {
+                case .photo(let url):
+                    let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: mediaView.frame.width, height: mediaView.frame.height))
+                    imgView.clipsToBounds = true
+                    imgView.contentMode = .scaleAspectFit
+                    imgView.setImageWith(url)
+                    mediaView.addSubview(imgView)
+                    mediaView.isHidden = false
+                }
+            } else {
+                mediaView.isHidden = true
+                mediaView.subviews.forEach {$0.removeFromSuperview()}
             }
         }
     }

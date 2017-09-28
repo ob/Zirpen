@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum Media {
+    case photo(URL)
+}
+
 class Tweet: NSObject {
     
     var text: String?
@@ -17,10 +21,11 @@ class Tweet: NSObject {
     var idStr: String?
     var inReplyToUserIdStr: String?
     var retweetCount: Int?
-    var retweet: Bool?
     var user: User?
     var retweetedTweet: Tweet?
+    var quotedTweet: Tweet?
     var createdAt: Date?
+    var media: Media?
     
     var prettyInterval: String? {
         get {
@@ -68,10 +73,30 @@ class Tweet: NSObject {
         if let userDict = dictionary["user"] as? NSDictionary {
             user = User(dictionary: userDict)
         }
-        retweet = false
         if let retweetDict = dictionary["retweeted_status"] as? NSDictionary {
             retweetedTweet = Tweet.init(dictionary: retweetDict)
-            retweet = true
+        }
+        
+        if let quotedDict = dictionary["quoted_tweet"] as? NSDictionary {
+            quotedTweet = Tweet.init(dictionary: quotedDict)
+        }
+        
+        if let entitiesDict = dictionary["entities"] as? NSDictionary,
+            let mediaList = entitiesDict["media"] as? NSArray {
+            for media in mediaList {
+                guard let mediaDict = media as? NSDictionary else {
+                    continue
+                }
+                guard let type = mediaDict["type"] as? String else {
+                    continue
+                }
+                if type == "photo" {
+                    if let urlString = mediaDict["media_url_https"] as? String,
+                        let url = URL(string: urlString) {
+                            self.media = Media.photo(url)
+                    }
+                }
+            }
         }
         
         // "entities": {
