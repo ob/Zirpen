@@ -15,11 +15,11 @@ class tweetCell: UITableViewCell {
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var mediaView: UIView!
-    @IBOutlet weak var extraStatusView: UIView!
     @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var retweetProfileImage: UIImageView!
     @IBOutlet weak var retweetNameLabel: UILabel!
     @IBOutlet weak var dateIntervalLabel: UILabel!
+    @IBOutlet weak var extraStatusView: UIStackView!
     
     var tweet: Tweet! {
         didSet {
