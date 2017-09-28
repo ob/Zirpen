@@ -16,6 +16,14 @@ class User: NSObject, Codable {
     var screenName: String?
     var profileURL: URL?
     var tagline: String?
+    var atScreenName: String? {
+        get {
+            if let sn = screenName {
+                return String(format: "@%@", sn)
+            }
+            return nil
+        }
+    }
 
     init(dictionary: NSDictionary) {
         name = dictionary["name"] as? String

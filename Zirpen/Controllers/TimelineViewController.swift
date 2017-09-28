@@ -42,11 +42,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
-            print("Tweet: \(tweets[indexPath.row].text)")
             cell.tweet = tweets[indexPath.row]
-        } else {
-            print("Failed")
+            return cell
         }
+        assert(false)
         return UITableViewCell()
     }
 
