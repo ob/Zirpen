@@ -14,6 +14,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     var tweets: [Tweet] = [Tweet]()
     var maxId: Int?
     var spinner: UIActivityIndicatorView?
+    var refreshControl: UIRefreshControl?
     var isDataLoading = false
     
     override func viewDidLoad() {
@@ -26,16 +27,25 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         spinner!.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 44)
         spinner?.stopAnimating()
         tableView.tableFooterView = spinner
+
+        // Initialize a UIRefreshControl
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: #selector(loadTweets(_:)), for: UIControlEvents.valueChanged)
+        tableView.insertSubview(refreshControl!, at: 0)
         
-        loadTweets()
+        loadTweets(nil)
     }
 
-    func loadTweets() {
+    @objc func loadTweets(_ refreshControl: UIRefreshControl?) {
         isDataLoading = true
         spinner?.startAnimating()
+        if refreshControl != nil {
+            maxId = nil
+        }
         TwitterClient.shared.homeTimeline(fromId: maxId) { (tweets, error) in
             self.isDataLoading = false
             self.spinner?.stopAnimating()
+            refreshControl?.endRefreshing()
             if let tweets = tweets {
                 if self.maxId != nil {
                     self.tweets.append(contentsOf: tweets)
@@ -72,7 +82,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == tweets.count - 1 && !isDataLoading {
-            loadTweets()
+            loadTweets(nil)
         }
     }
 
