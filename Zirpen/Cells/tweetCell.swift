@@ -21,41 +21,63 @@ class tweetCell: UITableViewCell {
     @IBOutlet weak var dateIntervalLabel: UILabel!
     @IBOutlet weak var extraStatusView: UIStackView!
     
+    var detail = false
+    var photoURL: URL?
+    
+    func displayTweet(_ tweet: Tweet) {
+        nameLabel.text = tweet.user?.name
+        tweetTextLabel.text = tweet.text
+        screenNameLabel.text = tweet.user?.atScreenName
+        dateIntervalLabel.text = tweet.prettyInterval
+        if let url = tweet.user?.profileURL {
+            profileImageView.setImageWith(url)
+        }
+        if let media = tweet.media {
+            switch media {
+            case .photo(let url):
+                photoURL = url
+                if !detail {
+                    displayPhotoEmbedded(url: url)
+                }
+            }
+        } else {
+            mediaView.isHidden = true
+            mediaView.subviews.forEach {$0.removeFromSuperview()}
+        }
+    }
+    
+    func displayPhotoEmbedded(url: URL) {
+        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: mediaView.frame.width, height: mediaView.frame.height))
+        imgView.clipsToBounds = true
+        imgView.contentMode = .scaleAspectFit
+        imgView.setImageWith(url)
+        mediaView.addSubview(imgView)
+        mediaView.isHidden = false
+    }
+    
+    func displayRetweet(_ tweet: Tweet) {
+        extraStatusView.isHidden = false
+        if let url = tweet.user?.profileURL {
+            retweetProfileImage.setImageWith(url)
+        }
+        dateIntervalLabel.text = tweet.prettyInterval
+        retweetNameLabel.text = tweet.user?.name
+        retweetImage.image = #imageLiteral(resourceName: "retweet-1-16")
+    }
+    
+    func configureDetail() {
+        dateIntervalLabel.isHidden = true
+        textLabel?.font.withSize(22.0)
+    }
+    
     var tweet: Tweet! {
         didSet {
-            var t:Tweet = tweet!
             if tweet.retweetedTweet != nil {
-                t = tweet.retweetedTweet!
-                extraStatusView.isHidden = false
-                if let url = tweet.user?.profileURL {
-                    retweetProfileImage.setImageWith(url)
-                }
-                dateIntervalLabel.text = tweet.prettyInterval
-                retweetNameLabel.text = tweet.user?.name
-                retweetImage.image = #imageLiteral(resourceName: "retweet-1-16")
+                displayTweet(tweet.retweetedTweet!)
+                displayRetweet(tweet)
             } else {
                 extraStatusView.isHidden = true
-            }
-            nameLabel.text = t.user?.name
-            tweetTextLabel.text = t.text
-            screenNameLabel.text = t.user?.atScreenName
-            dateIntervalLabel.text = t.prettyInterval
-            if let url = t.user?.profileURL {
-                profileImageView.setImageWith(url)
-            }
-            if let media = t.media {
-                switch media {
-                case .photo(let url):
-                    let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: mediaView.frame.width, height: mediaView.frame.height))
-                    imgView.clipsToBounds = true
-                    imgView.contentMode = .scaleAspectFit
-                    imgView.setImageWith(url)
-                    mediaView.addSubview(imgView)
-                    mediaView.isHidden = false
-                }
-            } else {
-                mediaView.isHidden = true
-                mediaView.subviews.forEach {$0.removeFromSuperview()}
+                displayTweet(tweet)
             }
         }
     }
