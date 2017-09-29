@@ -261,7 +261,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="LxM-5S-div"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
