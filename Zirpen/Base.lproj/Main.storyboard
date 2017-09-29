@@ -293,6 +293,7 @@
                     <connections>
                         <outlet property="avatarImageView" destination="GqY-AL-HIu" id="lfs-HD-dGR"/>
                         <outlet property="countLabel" destination="crJ-rq-0D5" id="Yzr-ye-IdV"/>
+                        <outlet property="tweetButton" destination="ZhM-nD-pfu" id="9Zz-9A-bxS"/>
                         <outlet property="tweetTextField" destination="FHc-vi-KVC" id="Z5j-Yp-gU6"/>
                     </connections>
                 </viewController>

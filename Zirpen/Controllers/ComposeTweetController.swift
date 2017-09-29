@@ -13,6 +13,7 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var tweetTextField: UITextView!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var tweetButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
             avatarImageView.setImageWith(url)
         }
         countLabel.text = "140"
+        tweetButton.isEnabled = false
         tweetTextField.delegate = self
         tweetTextField.becomeFirstResponder()
         // Do any additional setup after loading the view.
@@ -42,8 +44,10 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
         let remaining = 140 - length
         if remaining < 0 {
             countLabel.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            tweetButton.isEnabled = false
         } else {
             countLabel.textColor = #colorLiteral(red: 0.5723067522, green: 0.5723067522, blue: 0.5723067522, alpha: 1)
+            tweetButton.isEnabled = true
         }
         countLabel.text = String(remaining)
     }
