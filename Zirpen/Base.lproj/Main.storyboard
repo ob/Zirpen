@@ -230,8 +230,30 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageDetailCell" id="5hC-iV-hU9" customClass="ImageDetailCell" customModule="Zirpen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5hC-iV-hU9" id="AuF-Ee-iTk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Go-dS-4De">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5Go-dS-4De" firstAttribute="top" secondItem="AuF-Ee-iTk" secondAttribute="top" id="LOm-KG-zAz"/>
+                                                <constraint firstItem="5Go-dS-4De" firstAttribute="leading" secondItem="AuF-Ee-iTk" secondAttribute="leading" id="TU3-je-vGi"/>
+                                                <constraint firstAttribute="trailing" secondItem="5Go-dS-4De" secondAttribute="trailing" id="d5k-ph-pAF"/>
+                                                <constraint firstAttribute="bottom" secondItem="5Go-dS-4De" secondAttribute="bottom" id="mYb-zE-79k"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="5Go-dS-4De" id="50g-bz-WIP"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="tweetCell" rowHeight="323" id="lAr-x3-WAh" customClass="tweetCell" customModule="Zirpen" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="323"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="323"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lAr-x3-WAh" id="mwv-zf-MFG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="322.5"/>
@@ -351,26 +373,68 @@
                                             <outlet property="tweetTextLabel" destination="lLU-wK-9tN" id="g7K-4z-9bn"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageDetailCell" id="5hC-iV-hU9" customClass="ImageDetailCell" customModule="Zirpen" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="351" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetStatsCell" id="wCp-7i-8Y0" customClass="TweetStatsCell" customModule="Zirpen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="395" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5hC-iV-hU9" id="AuF-Ee-iTk">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wCp-7i-8Y0" id="vfd-Du-gbQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Go-dS-4De">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="sf4-PJ-7YM">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                                </imageView>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UNX-m5-PFT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="23"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPl-Su-y1b">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 Retweet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NA4-7M-Za4">
+                                                                    <rect key="frame" x="187.5" y="0.0" width="187.5" height="23"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="23" id="DeG-60-dRZ"/>
+                                                            </constraints>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Gmn-3A-Xkp">
+                                                            <rect key="frame" x="0.0" y="25" width="375" height="18.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sep 26, 2017 at 1:17 PM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6yn-sd-Maj">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="186.5" height="18.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="via Twitter Web Client" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWO-KN-8tQ">
+                                                                    <rect key="frame" x="188.5" y="0.0" width="186.5" height="18.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="5Go-dS-4De" firstAttribute="top" secondItem="AuF-Ee-iTk" secondAttribute="top" id="LOm-KG-zAz"/>
-                                                <constraint firstItem="5Go-dS-4De" firstAttribute="leading" secondItem="AuF-Ee-iTk" secondAttribute="leading" id="TU3-je-vGi"/>
-                                                <constraint firstAttribute="trailing" secondItem="5Go-dS-4De" secondAttribute="trailing" id="d5k-ph-pAF"/>
-                                                <constraint firstAttribute="bottom" secondItem="5Go-dS-4De" secondAttribute="bottom" id="mYb-zE-79k"/>
+                                                <constraint firstAttribute="trailing" secondItem="sf4-PJ-7YM" secondAttribute="trailing" id="0Wz-zd-BVn"/>
+                                                <constraint firstItem="sf4-PJ-7YM" firstAttribute="leading" secondItem="vfd-Du-gbQ" secondAttribute="leading" id="8gH-Vr-FoO"/>
+                                                <constraint firstAttribute="bottom" secondItem="sf4-PJ-7YM" secondAttribute="bottom" id="94E-ZG-Wfd"/>
+                                                <constraint firstItem="sf4-PJ-7YM" firstAttribute="top" secondItem="vfd-Du-gbQ" secondAttribute="top" id="AoH-To-sbU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="photoImageView" destination="5Go-dS-4De" id="50g-bz-WIP"/>
+                                            <outlet property="clientLabel" destination="nWO-KN-8tQ" id="gsB-cw-m7u"/>
+                                            <outlet property="dateLabel" destination="6yn-sd-Maj" id="TIG-jq-zTQ"/>
+                                            <outlet property="likesLabel" destination="wPl-Su-y1b" id="8zO-rX-iCC"/>
+                                            <outlet property="retweetsLabel" destination="NA4-7M-Za4" id="qsO-FV-QSO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

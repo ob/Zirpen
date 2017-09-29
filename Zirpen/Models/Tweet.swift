@@ -23,9 +23,11 @@ class Tweet: NSObject {
     var retweetCount: Int?
     var user: User?
     var retweetedTweet: Tweet?
+    var favouritesCount: Int?
     var quotedTweet: Tweet?
     var createdAt: Date?
     var media: Media?
+    var source: String?
     
     var prettyInterval: String? {
         get {
@@ -99,31 +101,20 @@ class Tweet: NSObject {
             }
         }
         
-        // "entities": {
-        //   "urls": [
-
-        //   ],
-        //   "hashtags": [
-
-        //   ],
-        //   "user_mentions": [
-
-        //   ]
-        // },
-        // "contributors": null,
         id = dictionary["id"] as? Int
         retweetCount = dictionary["retweet_count"] as? Int
+        favouritesCount = dictionary["favourites_count"] as? Int
+        source = dictionary["source"] as? String
+        
         // "in_reply_to_status_id_str": null,
         // "geo": null,
         // retweeted = dictionary["retweeted"] as? Bool
         // "in_reply_to_user_id": null,
         // "place": null,
-        // "source": "OAuth Dancer Reborn",
 
         //   "default_profile": false,
         //   "url": "http://bit.ly/oauth-dancer",
         //   "contributors_enabled": false,
-        //   "favourites_count": 7,
         //   "utc_offset": null,
         //   "profile_image_url_https": "https://si0.twimg.com/profile_images/730275945/oauth-dancer_normal.jpg",
         //   "id": 119476949,

@@ -10,7 +10,16 @@ import UIKit
 
 class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var tweet: Tweet!
+    var tweet: Tweet! {
+        didSet {
+            if let media = tweet.media {
+                switch media {
+                case .photo(let url):
+                    photoURL = url
+                }
+            }
+        }
+    }
     var photoURL: URL?
     
     @IBOutlet weak var tableView: UITableView!
@@ -31,14 +40,10 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tweet.media != nil {
-            switch tweet.media! {
-            case .photo(let url):
-                photoURL = url
-                return 2
-            }
+        if photoURL != nil {
+            return 3
         }
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -48,9 +53,16 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
 
         }
-        // not a photo
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
-            cell.detail = true
+        // not a photo let's see if it's the tweet
+        if (indexPath.row == 0 && photoURL == nil) || (indexPath.row == 1 && photoURL != nil) {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
+                cell.detail = true
+                cell.tweet = tweet
+                return cell
+            }
+        }
+        // it's the status
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetStatsCell", for: indexPath) as? TweetStatsCell {
             cell.tweet = tweet
             return cell
         }
