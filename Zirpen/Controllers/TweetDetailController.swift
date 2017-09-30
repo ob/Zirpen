@@ -90,9 +90,11 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
             TwitterClient.shared.favourite(tweet: tweet, completion: { (tweet, error) in
                 if tweet != nil {
                     print("Favourited!")
+                    self.tweet.favorited = true
                     if let button = sender as? UIButton {
                         button.imageView?.image = #imageLiteral(resourceName: "favorite-full-16")
                     }
+                    self.tableView.reloadData()
                 } else {
                     print("Error")
                 }
@@ -101,9 +103,11 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
             TwitterClient.shared.unfavourite(tweet: tweet, completion: { (tweet, error) in
                 if tweet != nil {
                     print("Unfavourited")
+                    self.tweet.favorited = false
                     if let button = sender as? UIButton {
                         button.imageView?.image = #imageLiteral(resourceName: "favorite-4-16")
                     }
+                    self.tableView.reloadData()
                 } else {
                     print("Error")
                 }

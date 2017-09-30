@@ -36,7 +36,14 @@ class Tweet: NSObject {
             guard let createdAt = createdAt else {
                 return nil
             }
-            let seconds = DateInterval(start: createdAt, end: Date()).duration
+            var start = createdAt
+            var end = Date()
+            if start > end {
+                let tmp = start
+                start = end
+                end = tmp
+            }
+            let seconds = DateInterval(start: start, end: end).duration
             let formatter = DateComponentsFormatter()
             var format = "%@"
             if seconds < 60 {

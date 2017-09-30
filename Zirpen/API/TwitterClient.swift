@@ -35,6 +35,10 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
 
     func handleURL(url: URL) -> Bool {
+        if (url.query?.contains("denied=") ?? false) {
+            self.loginCompletion!(false, Failed(0, "Authorization denied."))
+            return true
+        }
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: requestToken, success: { (accessToken) in
             self.authorizedUser(completion: { (user, error) in
