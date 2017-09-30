@@ -23,6 +23,7 @@ class TweetStatsCell: UITableViewCell {
             formatter.dateFormat = "MMM d, y 'at' HH:MM"
             dateLabel.text = formatter.string(from: tweet.createdAt!)
             if let source = tweet.source {
+                // https://stackoverflow.com/questions/37048759/swift-display-html-data-in-a-label-or-textview
                 if let data = source.data(using: String.Encoding.utf16, allowLossyConversion: true),
                     let link = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
                     let txt = NSMutableAttributedString(string: "via ")

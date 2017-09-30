@@ -100,6 +100,9 @@
                                                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gca-nk-MQE">
+                                                                    <rect key="frame" x="292" y="-14.5" width="0.0" height="50"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="PD1-7q-B88"/>
@@ -173,6 +176,7 @@
                                         <connections>
                                             <outlet property="dateIntervalLabel" destination="McU-Hl-2XF" id="ZFH-nY-XJT"/>
                                             <outlet property="extraStatusView" destination="Lug-WC-2dZ" id="ZPS-rH-LoL"/>
+                                            <outlet property="favoritedImageView" destination="Gca-nk-MQE" id="2nL-E1-KcK"/>
                                             <outlet property="mediaView" destination="W3A-pM-Mqr" id="I7O-LB-pie"/>
                                             <outlet property="nameLabel" destination="W5l-NR-qYp" id="eVT-kl-0XJ"/>
                                             <outlet property="profileImageView" destination="Q12-hK-Bs0" id="isR-iM-BYO"/>
@@ -290,6 +294,9 @@
                                                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rqK-Av-Kcz">
+                                                                    <rect key="frame" x="292" y="-14.5" width="0.0" height="50"/>
+                                                                </imageView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="qad-YD-rTp"/>
@@ -363,6 +370,7 @@
                                         <connections>
                                             <outlet property="dateIntervalLabel" destination="hG6-Fj-qJ6" id="kCY-7C-jTZ"/>
                                             <outlet property="extraStatusView" destination="lLE-XM-Tff" id="LsK-2I-DrK"/>
+                                            <outlet property="favoritedImageView" destination="rqK-Av-Kcz" id="Mnv-nf-Kj1"/>
                                             <outlet property="mediaView" destination="W3g-xo-FmT" id="n28-QS-hbh"/>
                                             <outlet property="nameLabel" destination="QOX-g9-FgM" id="8oz-AC-Gd7"/>
                                             <outlet property="profileImageView" destination="Cd9-XK-09Y" id="mak-y9-dsM"/>
@@ -435,6 +443,54 @@
                                             <outlet property="dateLabel" destination="6yn-sd-Maj" id="TIG-jq-zTQ"/>
                                             <outlet property="likesLabel" destination="wPl-Su-y1b" id="8zO-rX-iCC"/>
                                             <outlet property="retweetsLabel" destination="NA4-7M-Za4" id="qsO-FV-QSO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetControlsCell" id="PnD-vH-yGz" customClass="tweetControlsCell" customModule="Zirpen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="439" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PnD-vH-yGz" id="qsM-pu-UwL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="s1U-np-97V">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98k-kZ-M8L">
+                                                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" image="retweet-1-16">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="onRetweetButton:" destination="9Lm-dA-34A" eventType="touchUpInside" id="SeY-DX-hl8"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogh-fg-avv">
+                                                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" image="favorite-4-16">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="onFavouriteButton:" destination="9Lm-dA-34A" eventType="touchUpInside" id="sbd-Gf-suS"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="KkR-Li-zyZ"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="s1U-np-97V" secondAttribute="trailing" id="avk-s6-ABE"/>
+                                                <constraint firstItem="s1U-np-97V" firstAttribute="top" secondItem="qsM-pu-UwL" secondAttribute="top" id="iKS-58-29d"/>
+                                                <constraint firstItem="s1U-np-97V" firstAttribute="leading" secondItem="qsM-pu-UwL" secondAttribute="leading" id="w2j-tV-04j"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="favouriteButton" destination="ogh-fg-avv" id="ZdJ-Y8-6WH"/>
+                                            <outlet property="retweetButton" destination="98k-kZ-M8L" id="dKm-5r-Ndh"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -563,6 +619,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favorite-4-16" width="16" height="16"/>
         <image name="iconmonstr-edit-6-24" width="24" height="24"/>
+        <image name="retweet-1-16" width="16" height="16"/>
     </resources>
 </document>

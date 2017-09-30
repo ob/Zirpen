@@ -20,6 +20,7 @@ class tweetCell: UITableViewCell {
     @IBOutlet weak var retweetNameLabel: UILabel!
     @IBOutlet weak var dateIntervalLabel: UILabel!
     @IBOutlet weak var extraStatusView: UIStackView!
+    @IBOutlet weak var favoritedImageView: UIImageView!
     
     var detail = false
     var photoURL: URL?
@@ -31,6 +32,13 @@ class tweetCell: UITableViewCell {
         dateIntervalLabel.text = tweet.prettyInterval
         if let url = tweet.user?.profileURL {
             profileImageView.setImageWith(url)
+        }
+        if tweet.favorited ?? false {
+            favoritedImageView.image = #imageLiteral(resourceName: "favorite-full-16")
+            favoritedImageView.tintColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+            favoritedImageView.isHidden = false
+        } else {
+            favoritedImageView.isHidden = true
         }
         if let media = tweet.media {
             switch media {

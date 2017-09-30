@@ -28,6 +28,8 @@ class Tweet: NSObject {
     var createdAt: Date?
     var media: Media?
     var source: String?
+    var retweeted: Bool?
+    var favourited: Bool?
     
     var prettyInterval: String? {
         get {
@@ -105,10 +107,12 @@ class Tweet: NSObject {
         retweetCount = dictionary["retweet_count"] as? Int
         favouritesCount = dictionary["favourites_count"] as? Int
         source = dictionary["source"] as? String
-        
+
+        retweeted = dictionary["retweeted"] as? Bool
+        favorited = dictionary["favorited"] as? Bool
+
         // "in_reply_to_status_id_str": null,
         // "geo": null,
-        // retweeted = dictionary["retweeted"] as? Bool
         // "in_reply_to_user_id": null,
         // "place": null,
 

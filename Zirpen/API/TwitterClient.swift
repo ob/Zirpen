@@ -78,9 +78,45 @@ class TwitterClient: BDBOAuth1SessionManager {
                 completion(nil, self.Failed(0, "Invalid response from server"))
             }
         }, failure: { (task, error) in
-            print(error)
+            completion(nil, error)
         })
     }
+    
+    fileprivate func action(endpoint: String, parameters: [String:Any]?, tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
+        post(endpoint, parameters: parameters, progress: nil, success: { (task, response) in
+            completion(tweet, nil)
+        }) { (task, error) in
+            completion(nil, error)
+        }
+    }
+
+    func retweet(tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
+        let endpoint = String(format: "1.1/statuses/retweet/%@.json", tweet.idStr!)
+        action(endpoint: endpoint, parameters:nil, tweet: tweet, completion: completion)
+    }
+    
+    func unretweet(tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
+        let endpoint = String(format: "1.1/statuses/unretweet/%@.json", tweet.idStr!)
+        action(endpoint: endpoint, parameters:nil, tweet: tweet, completion: completion)
+    }
+    
+    func favourite(tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
+        var parameters = [String:Any]()
+        if let id = tweet.id {
+            parameters["id"] = id
+        }
+        print("parameters: \(parameters)")
+        action(endpoint: "1.1/favorites/create.json", parameters: parameters, tweet: tweet, completion: completion)
+    }
+    
+    func unfavourite(tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
+        var parameters = [String:Any]()
+        if let id = tweet.id {
+            parameters["id"] = id
+        }
+        action(endpoint: "1.1/favorites/destroy.json", parameters: parameters, tweet: tweet, completion: completion)
+    }
+
 
     func Failed(_ code: Int, _ message: String) -> NSError {
         return NSError(domain: "", code: code, userInfo: [NSLocalizedDescriptionKey: message])

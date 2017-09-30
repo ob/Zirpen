@@ -41,35 +41,72 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if photoURL != nil {
-            return 3
+            return 4
         }
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0  && photoURL != nil {
+        var row = indexPath.row
+        if photoURL == nil {
+            row += 1
+        }
+        if row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "imageDetailCell", for: indexPath) as! ImageDetailCell
             cell.photoURL = photoURL
             return cell
 
         }
         // not a photo let's see if it's the tweet
-        if (indexPath.row == 0 && photoURL == nil) || (indexPath.row == 1 && photoURL != nil) {
+        if row == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
                 cell.detail = true
                 cell.tweet = tweet
                 return cell
             }
         }
-        // it's the status
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetStatsCell", for: indexPath) as? TweetStatsCell {
-            cell.tweet = tweet
-            return cell
+        if row == 2 {
+            // it's the status
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetStatsCell", for: indexPath) as? TweetStatsCell {
+                cell.tweet = tweet
+                return cell
+            }
+        }
+        if row == 3 {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetControlsCell", for: indexPath) as? tweetControlsCell {
+                cell.tweet = tweet
+                return cell
+            }
         }
         return UITableViewCell()
     }
     
+    @IBAction func onRetweetButton(_ sender: Any) {
+        print("Retwet!")
+    }
 
+    @IBAction func onFavouriteButton(_ sender: Any) {
+        if !(tweet.favorited ?? false) {
+            TwitterClient.shared.favourite(tweet: tweet, completion: { (tweet, error) in
+                if tweet != nil {
+                    print("Favourited!")
+                    if let button = sender as? UIButton {
+                        button.imageView?.image = #imageLiteral(resourceName: "favorite-full-16")
+                    }
+                }
+            })
+        } else {
+            TwitterClient.shared.unfavourite(tweet: tweet, completion: { (tweet, error) in
+                if tweet != nil {
+                    print("Unfavourited")
+                    if let button = sender as? UIButton {
+                        button.imageView?.image = #imageLiteral(resourceName: "favorite-4-16")
+                    }
+                }
+            })
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
