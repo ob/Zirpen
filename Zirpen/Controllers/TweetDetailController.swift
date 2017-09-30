@@ -93,6 +93,8 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     if let button = sender as? UIButton {
                         button.imageView?.image = #imageLiteral(resourceName: "favorite-full-16")
                     }
+                } else {
+                    print("Error")
                 }
             })
         } else {
@@ -102,6 +104,8 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     if let button = sender as? UIButton {
                         button.imageView?.image = #imageLiteral(resourceName: "favorite-4-16")
                     }
+                } else {
+                    print("Error")
                 }
             })
         }

@@ -83,9 +83,11 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     fileprivate func action(endpoint: String, parameters: [String:Any]?, tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
+        print("POSTing")
         post(endpoint, parameters: parameters, progress: nil, success: { (task, response) in
             completion(tweet, nil)
         }) { (task, error) in
+            print("ACTION FAILED: \(error.localizedDescription)")
             completion(nil, error)
         }
     }
@@ -101,20 +103,17 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     func favourite(tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
+        let endpoint = String(format: "1.1/favorites/create.json?id=%@", tweet.idStr!)
         var parameters = [String:Any]()
-        if let id = tweet.id {
-            parameters["id"] = id
-        }
+        parameters["id"] = tweet.idStr!
         print("parameters: \(parameters)")
-        action(endpoint: "1.1/favorites/create.json", parameters: parameters, tweet: tweet, completion: completion)
+        print("endpoint: \(endpoint)")
+        action(endpoint: endpoint, parameters: nil, tweet: tweet, completion: completion)
     }
     
     func unfavourite(tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
-        var parameters = [String:Any]()
-        if let id = tweet.id {
-            parameters["id"] = id
-        }
-        action(endpoint: "1.1/favorites/destroy.json", parameters: parameters, tweet: tweet, completion: completion)
+        let endpoint = String(format: "1.1/favorites/destroy.json?id=%@", tweet.idStr!)
+        action(endpoint: endpoint, parameters: nil, tweet: tweet, completion: completion)
     }
 
 
