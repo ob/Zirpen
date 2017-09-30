@@ -21,6 +21,8 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     var photoURL: URL?
+    var onDismiss: (() -> Void)?
+    var cellsToReload: [IndexPath] = [IndexPath]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -32,6 +34,10 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
         // Add an empty footer to disable showing empty cells
         // as per: https://stackoverflow.com/questions/14520185/how-to-remove-empty-cells-in-uitableview
         tableView.tableFooterView = UIView()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        onDismiss?()
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +68,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
                 cell.detail = true
                 cell.tweet = tweet
+                cellsToReload.append(indexPath)
                 return cell
             }
         }
@@ -69,12 +76,14 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
             // it's the status
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetStatsCell", for: indexPath) as? TweetStatsCell {
                 cell.tweet = tweet
+                cellsToReload.append(indexPath)
                 return cell
             }
         }
         if row == 3 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetControlsCell", for: indexPath) as? tweetControlsCell {
                 cell.tweet = tweet
+                cellsToReload.append(indexPath)
                 return cell
             }
         }
@@ -87,7 +96,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                 if tweet != nil {
                     self.tweet.retweeted = true
                     self.tweet.retweetCount = (self.tweet.retweetCount ?? 0) + 1
-                    self.tableView.reloadData()
+                    self.tableView.reloadRows(at: self.cellsToReload, with: .none)
                 } else {
                     print("Error retweeting")
                 }
@@ -98,7 +107,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     print("Unretweeted")
                     self.tweet.retweeted = false
                     self.tweet.retweetCount = (self.tweet.retweetCount ?? 1) - 1
-                    self.tableView.reloadData()
+                    self.tableView.reloadRows(at: self.cellsToReload, with: .none)
                 } else {
                     print("Error unretweeting")
                 }
@@ -116,7 +125,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     if let button = sender as? UIButton {
                         button.imageView?.image = #imageLiteral(resourceName: "favorite-full-16")
                     }
-                    self.tableView.reloadData()
+                    self.tableView.reloadRows(at: self.cellsToReload, with: .none)
                 } else {
                     print("Error")
                 }
@@ -130,14 +139,14 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     if let button = sender as? UIButton {
                         button.imageView?.image = #imageLiteral(resourceName: "favorite-4-16")
                     }
-                    self.tableView.reloadData()
+                    self.tableView.reloadRows(at: self.cellsToReload, with: .none)
                 } else {
                     print("Error")
                 }
             })
         }
     }
-    
+
     /*
     // MARK: - Navigation
 

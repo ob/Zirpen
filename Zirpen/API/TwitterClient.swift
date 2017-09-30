@@ -87,7 +87,6 @@ class TwitterClient: BDBOAuth1SessionManager {
     }
     
     fileprivate func action(endpoint: String, parameters: [String:Any]?, tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
-        print("POSTing")
         post(endpoint, parameters: parameters, progress: nil, success: { (task, response) in
             completion(tweet, nil)
         }) { (task, error) in
@@ -110,8 +109,6 @@ class TwitterClient: BDBOAuth1SessionManager {
         let endpoint = String(format: "1.1/favorites/create.json?id=%@", tweet.idStr!)
         var parameters = [String:Any]()
         parameters["id"] = tweet.idStr!
-        print("parameters: \(parameters)")
-        print("endpoint: \(endpoint)")
         action(endpoint: endpoint, parameters: nil, tweet: tweet, completion: completion)
     }
     
@@ -119,7 +116,6 @@ class TwitterClient: BDBOAuth1SessionManager {
         let endpoint = String(format: "1.1/favorites/destroy.json?id=%@", tweet.idStr!)
         action(endpoint: endpoint, parameters: nil, tweet: tweet, completion: completion)
     }
-
 
     func Failed(_ code: Int, _ message: String) -> NSError {
         return NSError(domain: "", code: code, userInfo: [NSLocalizedDescriptionKey: message])

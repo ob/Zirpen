@@ -81,7 +81,6 @@ class Tweet: NSObject {
                 newLink.removeAttribute(NSAttributedStringKey.underlineStyle, range: NSMakeRange(0, newLink.length))
 //                Swift crashes here.
 //                newLink.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleNone, range: NSMakeRange(0, newLink.length))
-                print("got one")
                 let prefix = NSMutableAttributedString(string: "via ")
                 prefix.append(newLink)
                 return prefix
@@ -93,13 +92,11 @@ class Tweet: NSObject {
     var prettyLiked: NSAttributedString? {
         get {
             guard let favouritesCount = self.favouritesCount else {
-                print("Returning nil")
                 return nil
             }
             let astr = NSMutableAttributedString(string: String(favouritesCount))
             let favs = NSAttributedString(string: " Likes")
             astr.addAttributes([NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(0, astr.length))
-            print("got two!")
             astr.append(favs)
             return astr
         }
@@ -113,7 +110,6 @@ class Tweet: NSObject {
             let astr = NSMutableAttributedString(string: String(retweetCount))
             let retweets = NSAttributedString(string: " Retweets")
             astr.addAttributes([NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(0, astr.length))
-            print("got three")
             astr.append(retweets)
             return astr
         }

@@ -90,6 +90,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if let vc = segue.destination as? TweetDetailController,
             let indexPath = tableView.indexPath(for: sender as! tweetCell) {
             vc.tweet = tweets[indexPath.row]
+            vc.onDismiss = { [weak self] () in
+                self?.tableView.reloadRows(at: [indexPath], with: .none)
+            }
         }
     }
 
