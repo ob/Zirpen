@@ -83,7 +83,6 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
         if row == 3 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetControlsCell", for: indexPath) as? tweetControlsCell {
                 cell.tweet = tweet
-                cellsToReload.append(indexPath)
                 return cell
             }
         }
@@ -91,7 +90,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func onRetweetButton(_ sender: Any) {
-        if !(tweet.retweeted ?? false) {
+        if !(tweet.retweeted) {
             TwitterClient.shared.retweet(tweet: tweet, completion: { (tweet, error) in
                 if tweet != nil {
                     self.tweet.retweeted = true
@@ -116,7 +115,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     @IBAction func onFavouriteButton(_ sender: Any) {
-        if !(tweet.favorited ?? false) {
+        if !(tweet.favorited) {
             TwitterClient.shared.favourite(tweet: tweet, completion: { (tweet, error) in
                 if tweet != nil {
                     print("Favourited!")
@@ -144,6 +143,19 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     print("Error")
                 }
             })
+        }
+    }
+
+    @IBAction func onReplyButton(_ sender: Any) {
+        performSegue(withIdentifier: "composeTweet", sender: nil)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("preparing for Segue")
+        if let nc = segue.destination as? UINavigationController,
+            let vc = nc.viewControllers[0] as? ComposeTweetController {
+            print("Passing on the tweet")
+            vc.replyingTo = tweet
         }
     }
 

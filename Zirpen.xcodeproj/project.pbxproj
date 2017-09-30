@@ -52,6 +52,7 @@
 		854C293822320DD0097755B3 /* Pods-ZirpenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.release.xcconfig"; sourceTree = "<group>"; };
 		9D038CC5391A3CB64D11854A /* Pods-ZirpenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA46FA76586832836ABBE95 /* Pods-ZirpenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C40A10C41F805284007BA690 /* Zirpen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Zirpen.entitlements; sourceTree = "<group>"; };
 		C47659AD1F7C50470019E645 /* tweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tweetCell.swift; sourceTree = "<group>"; };
 		C493A7DE1F7DA0C200B93A61 /* TweetDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetDetailController.swift; sourceTree = "<group>"; };
 		C493A7E01F7DBFA200B93A61 /* ComposeTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTweetController.swift; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 		C4BC93501F7B0A06009B4904 /* Zirpen */ = {
 			isa = PBXGroup;
 			children = (
+				C40A10C41F805284007BA690 /* Zirpen.entitlements */,
 				C47659AF1F7C504C0019E645 /* Cells */,
 				C4BC93831F7B2AD1009B4904 /* API */,
 				C4BC93821F7B2AC7009B4904 /* Models */,
@@ -305,6 +307,11 @@
 					C4BC934D1F7B0A06009B4904 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					C4BC93611F7B0A06009B4904 = {
 						CreatedOnToolsVersion = 9.0;
@@ -700,6 +707,7 @@
 			baseConfigurationReference = 0E0A4BE083A1AA333D4ED8E3 /* Pods-Zirpen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Zirpen/Zirpen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SA26Z4N7MU;
 				INFOPLIST_FILE = Zirpen/Info.plist;
@@ -716,6 +724,7 @@
 			baseConfigurationReference = E84D54154115ADD1A29C427C /* Pods-Zirpen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Zirpen/Zirpen.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SA26Z4N7MU;
 				INFOPLIST_FILE = Zirpen/Info.plist;

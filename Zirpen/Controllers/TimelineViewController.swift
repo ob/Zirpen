@@ -94,6 +94,12 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 self?.tableView.reloadRows(at: [indexPath], with: .none)
             }
         }
+        if let vc = segue.destination as? ComposeTweetController {
+            vc.onDismiss = { (tweet) in
+                self.tweets.insert(tweet, at: 0)
+                self.tableView.reloadData()
+            }
+        }
     }
 
     /*

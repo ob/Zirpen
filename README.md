@@ -17,30 +17,30 @@ The following **required** functionality is completed:
   design the custom cell with the proper Auto Layout settings.  You
   will also need to augment the model classes.
 - [x] User can pull to refresh.
-- [ ] User can compose a new tweet by tapping on a compose button.
-- [ ] User can tap on a tweet to view it, with controls to retweet,
+- [x] User can compose a new tweet by tapping on a compose button.
+- [x] User can tap on a tweet to view it, with controls to retweet,
   favorite, and reply.
 
 The following **optional** features are implemented:
 
-- [ ] When composing, you should have a countdown in the upper right
+- [x] When composing, you should have a countdown in the upper right
   for the tweet limit.
-- [ ] After creating a new tweet, a user should be able to view it in
+- [x] After creating a new tweet, a user should be able to view it in
   the timeline immediately without refetching the timeline from the
   network.
-- [ ] Retweeting and favoriting should increment the retweet and
+- [x] Retweeting and favoriting should increment the retweet and
   favorite count.
-- [ ] User should be able to unretweet and unfavorite and should
+- [x] User should be able to unretweet and unfavorite and should
   decrement the retweet and favorite count.
-- [ ] Replies should be prefixed with the username and the reply_id
+- [x] Replies should be prefixed with the username and the reply_id
   should be set when posting the tweet,
 - [x] User can load more tweets once they reach the bottom of the feed
   using infinite loading similar to the actual Twitter client.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app
-  functionality!
+- [ ] Load media
+- [ ] 
 
 Please list two areas of the assignment you'd like to **discuss
 further with your peers** during the next class (examples include

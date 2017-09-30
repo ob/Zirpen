@@ -90,7 +90,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         post(endpoint, parameters: parameters, progress: nil, success: { (task, response) in
             completion(tweet, nil)
         }) { (task, error) in
-            print("ACTION FAILED: \(error.localizedDescription)")
+            print("ACTION FAILED: \(error.localizedDescription) - \(task!)")
             completion(nil, error)
         }
     }
@@ -114,6 +114,19 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func unfavourite(tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
         let endpoint = String(format: "1.1/favorites/destroy.json?id=%@", tweet.idStr!)
+        action(endpoint: endpoint, parameters: nil, tweet: tweet, completion: completion)
+    }
+
+    func tweet(tweet: Tweet, completion: @escaping ((Tweet?, Error?) -> Void)) {
+        var endpoint = "1.1/statuses/update.json?"
+        guard let quotedStatus = tweet.text?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            completion(nil, self.Failed(0, "Could not encode status"))
+            return
+        }
+        endpoint += String(format: "status=%@", quotedStatus)
+        if let replyto = tweet.inReplyToIdStr {
+            endpoint += String(format: "&in_reply_to_status_id=%@", replyto)
+        }
         action(endpoint: endpoint, parameters: nil, tweet: tweet, completion: completion)
     }
 

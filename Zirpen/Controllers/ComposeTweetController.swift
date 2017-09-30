@@ -14,6 +14,9 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var tweetTextField: UITextView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var tweetButton: UIBarButtonItem!
+
+    var replyingTo: Tweet?
+    var onDismiss: ((Tweet) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +35,12 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
         tweetTextField.delegate = self
         tweetTextField.becomeFirstResponder()
         // Do any additional setup after loading the view.
+        if let screenName = replyingTo?.user?.atScreenName {
+            tweetTextField.text = String(format: "%@ ", screenName)
+            countLabel.text = String(140 - screenName.utf8.count - 1)
+        }
     }
-    
+
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newLength = (textView.text?.count ?? 0) + text.count - range.length
         updateCountLabel(newLength)
@@ -62,6 +69,12 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func onTweetButton(_ sender: Any) {
+        let tweet = Tweet(user: User.currentUser!, text: tweetTextField.text, inReplyTo: replyingTo)
+        TwitterClient.shared.tweet(tweet: tweet) { (tweet, error) in
+            if error != nil {
+                print("Failed to post Tweet: \(error!.localizedDescription)")
+            }
+        }
         dismiss(animated: true, completion: nil)
     }
     

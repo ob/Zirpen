@@ -82,14 +82,14 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p1P-Mx-A0B">
                                                             <rect key="frame" x="0.0" y="0.0" width="299" height="20.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Oscar Bonilla" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5l-NR-qYp">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="20.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Oscar Bonilla" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5l-NR-qYp">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="107.5" height="20.5"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@obonilla" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6r-XK-tWO">
-                                                                    <rect key="frame" x="208" y="1.5" width="67" height="18"/>
+                                                                    <rect key="frame" x="115.5" y="1.5" width="159.5" height="18"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
@@ -208,7 +208,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="iconmonstr-edit-6-24" id="2dM-fb-0O8">
                             <connections>
-                                <segue destination="QEC-1J-fZs" kind="popoverPresentation" popoverAnchorBarButtonItem="2dM-fb-0O8" id="q4e-Vq-1LG">
+                                <segue destination="QEC-1J-fZs" kind="popoverPresentation" identifier="" popoverAnchorBarButtonItem="2dM-fb-0O8" id="q4e-Vq-1LG">
                                     <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                 </segue>
                             </connections>
@@ -455,8 +455,18 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="s1U-np-97V">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                                     <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k3U-TN-T0j">
+                                                            <rect key="frame" x="0.0" y="0.0" width="125" height="40"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" image="reply-4-16">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="onReplyButton:" destination="9Lm-dA-34A" eventType="touchUpInside" id="WwJ-If-4eN"/>
+                                                            </connections>
+                                                        </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="98k-kZ-M8L">
-                                                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="40"/>
+                                                            <rect key="frame" x="125" y="0.0" width="125" height="40"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <state key="normal" image="retweet-1-16">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -466,7 +476,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogh-fg-avv">
-                                                            <rect key="frame" x="187.5" y="0.0" width="187.5" height="40"/>
+                                                            <rect key="frame" x="250" y="0.0" width="125" height="40"/>
                                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <state key="normal" image="favorite-4-16">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -508,6 +518,9 @@
                     <navigationItem key="navigationItem" id="5P1-9F-KIH"/>
                     <connections>
                         <outlet property="tableView" destination="HWF-nh-X4Z" id="Hiq-8H-fBf"/>
+                        <segue destination="QEC-1J-fZs" kind="popoverPresentation" identifier="composeTweet" popoverAnchorView="HWF-nh-X4Z" id="1Zl-6A-sYZ">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4pG-QK-MET" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -621,6 +634,10 @@
     <resources>
         <image name="favorite-4-16" width="16" height="16"/>
         <image name="iconmonstr-edit-6-24" width="24" height="24"/>
+        <image name="reply-4-16" width="16" height="16"/>
         <image name="retweet-1-16" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="q4e-Vq-1LG"/>
+    </inferredMetricsTieBreakers>
 </document>

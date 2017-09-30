@@ -16,7 +16,6 @@ class Tweet: NSObject {
     
     var text: String?
     var truncated: Bool?
-    var favorited: Bool?
     var id: Int?
     var idStr: String?
     var inReplyToUserIdStr: String?
@@ -28,9 +27,10 @@ class Tweet: NSObject {
     var createdAt: Date?
     var media: Media?
     var source: String?
-    var retweeted: Bool?
-    var favourited: Bool?
-    
+    var retweeted: Bool
+    var favorited: Bool
+    var inReplyToIdStr: String?
+
     var prettyInterval: String? {
         get {
             guard let createdAt = createdAt else {
@@ -114,6 +114,14 @@ class Tweet: NSObject {
             return astr
         }
     }
+
+    init(user: User, text: String, inReplyTo: Tweet?) {
+        self.text = text
+        self.user = user
+        self.inReplyToIdStr = inReplyTo?.idStr
+        self.retweeted = false
+        self.favorited = false
+    }
     
     init(dictionary: NSDictionary) {
         print(dictionary)
@@ -126,7 +134,6 @@ class Tweet: NSObject {
             createdAt = formatter.date(from: created_at)
         }
         // "created_at": "Tue Aug 28 21:16:23 +0000 2012",
-        favorited = dictionary["favorited"] as? Bool
         idStr = dictionary["id_str"] as? String
         inReplyToUserIdStr = dictionary["in_reply_to_user_id_str"] as? String
         if let userDict = dictionary["user"] as? NSDictionary {
@@ -163,10 +170,9 @@ class Tweet: NSObject {
         favouritesCount = dictionary["favorite_count"] as? Int
         source = dictionary["source"] as? String
 
-        retweeted = dictionary["retweeted"] as? Bool
-        favorited = dictionary["favorited"] as? Bool
-
-        // "in_reply_to_status_id_str": null,
+        retweeted = dictionary["retweeted"] as? Bool ?? false
+        favorited = dictionary["favorited"] as? Bool ?? false
+        inReplyToIdStr = dictionary["in_reply_to_status_id_str"] as? String
         // "geo": null,
         // "in_reply_to_user_id": null,
         // "place": null,

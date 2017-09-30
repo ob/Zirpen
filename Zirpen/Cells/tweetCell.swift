@@ -33,7 +33,7 @@ class tweetCell: UITableViewCell {
         if let url = tweet.user?.profileURL {
             profileImageView.setImageWith(url)
         }
-        if tweet.favorited ?? false && !detail {
+        if tweet.favorited && !detail {
             favoritedImageView.image = #imageLiteral(resourceName: "favorite-full-16")
             favoritedImageView.tintColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
             favoritedImageView.isHidden = false
@@ -69,7 +69,7 @@ class tweetCell: UITableViewCell {
             retweetProfileImage.setImageWith(url)
         }
         retweetNameLabel.text = user?.name
-        if tweet.retweeted ?? false  && user?.screenName != User.currentUser?.screenName {
+        if tweet.retweeted  && user?.screenName != User.currentUser?.screenName {
             retweetNameLabel.text = retweetNameLabel.text! + " and You"
         }
         retweetImage.image = #imageLiteral(resourceName: "retweet-1-16")
@@ -86,7 +86,7 @@ class tweetCell: UITableViewCell {
             if tweet.retweetedTweet != nil {
                 displayTweet(tweet.retweetedTweet!)
                 displayRetweet(tweet.user)
-            } else  if tweet.retweeted ?? false {
+            } else  if tweet.retweeted {
                 displayTweet(tweet)
                 displayRetweet(User.currentUser)
             } else {
