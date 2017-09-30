@@ -66,6 +66,57 @@ class Tweet: NSObject {
         }
     }
 
+    var prettySource: NSAttributedString? {
+        get {
+            guard let source = source else {
+                return nil
+            }
+            // https://stackoverflow.com/questions/37048759/swift-display-html-data-in-a-label-or-textview
+            if let data = source.data(using: String.Encoding.utf16, allowLossyConversion: true),
+                let link = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+                let newLink = NSMutableAttributedString(attributedString: link)
+                newLink.addAttributes([NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0),
+                                       NSAttributedStringKey.foregroundColor: UIColor.black,
+                                       NSAttributedStringKey.strokeColor: UIColor.black], range: NSMakeRange(0, newLink.length))
+                newLink.removeAttribute(NSAttributedStringKey.underlineStyle, range: NSMakeRange(0, newLink.length))
+//                Swift crashes here.
+//                newLink.addAttribute(NSAttributedStringKey.underlineStyle, value: NSUnderlineStyle.styleNone, range: NSMakeRange(0, newLink.length))
+                print("got one")
+                let prefix = NSMutableAttributedString(string: "via ")
+                prefix.append(newLink)
+                return prefix
+            }
+            return nil
+        }
+    }
+
+    var prettyLiked: NSAttributedString? {
+        get {
+            guard let favouritesCount = favouritesCount else {
+                return nil
+            }
+            let astr = NSMutableAttributedString(string: String(favouritesCount))
+            let favs = NSAttributedString(string: " Likes")
+            astr.addAttributes([NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(0, astr.length))
+            print("got two!")
+            astr.append(favs)
+            return astr
+        }
+    }
+
+    var prettyRetweets: NSAttributedString? {
+        get {
+            guard let retweetCount = retweetCount else {
+                return nil
+            }
+            let astr = NSMutableAttributedString(string: String(retweetCount))
+            let retweets = NSAttributedString(string: " Retweets")
+            astr.addAttributes([NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(0, astr.length))
+            print("got three")
+            astr.append(retweets)
+            return astr
+        }
+    }
     
     init(dictionary: NSDictionary) {
         print(dictionary)

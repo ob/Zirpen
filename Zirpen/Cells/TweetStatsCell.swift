@@ -17,21 +17,23 @@ class TweetStatsCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
-            likesLabel.text = String(format: "%d Likes", tweet.favouritesCount ?? 0)
-            retweetsLabel.text = String(format: "%d Retweets", tweet.retweetCount ?? 0)
+            if tweet.prettyLiked != nil {
+                likesLabel.attributedText = tweet.prettyLiked!
+            } else {
+                likesLabel.text = String(format: "%d Likes", tweet.favouritesCount ?? 0)
+            }
+            if tweet.prettyRetweets != nil {
+                retweetsLabel.attributedText = tweet.prettyRetweets!
+            } else {
+                retweetsLabel.text = String(format: "%d Retweets", tweet.retweetCount ?? 0)
+            }
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM d, y 'at' HH:MM"
             dateLabel.text = formatter.string(from: tweet.createdAt!)
-            if let source = tweet.source {
-                // https://stackoverflow.com/questions/37048759/swift-display-html-data-in-a-label-or-textview
-                if let data = source.data(using: String.Encoding.utf16, allowLossyConversion: true),
-                    let link = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
-                    let txt = NSMutableAttributedString(string: "via ")
-                    txt.append(link)
-                    clientLabel.attributedText = txt
-                } else {
-                    clientLabel.text = String(format: "via %@", source)
-                }
+            if tweet.prettySource != nil {
+                clientLabel.attributedText = tweet.prettySource!
+            } else if tweet.source != nil {
+                clientLabel.text = "via " + tweet.source!
             } else {
                 clientLabel.text = "via Unknown"
             }
