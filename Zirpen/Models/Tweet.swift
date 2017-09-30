@@ -92,7 +92,8 @@ class Tweet: NSObject {
 
     var prettyLiked: NSAttributedString? {
         get {
-            guard let favouritesCount = favouritesCount else {
+            guard let favouritesCount = self.favouritesCount else {
+                print("Returning nil")
                 return nil
             }
             let astr = NSMutableAttributedString(string: String(favouritesCount))
@@ -163,7 +164,7 @@ class Tweet: NSObject {
         
         id = dictionary["id"] as? Int
         retweetCount = dictionary["retweet_count"] as? Int
-        favouritesCount = dictionary["favourites_count"] as? Int
+        favouritesCount = dictionary["favorite_count"] as? Int
         source = dictionary["source"] as? String
 
         retweeted = dictionary["retweeted"] as? Bool
