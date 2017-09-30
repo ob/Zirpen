@@ -82,7 +82,28 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func onRetweetButton(_ sender: Any) {
-        print("Retwet!")
+        if !(tweet.retweeted ?? false) {
+            TwitterClient.shared.retweet(tweet: tweet, completion: { (tweet, error) in
+                if tweet != nil {
+                    self.tweet.retweeted = true
+                    self.tweet.retweetCount = (self.tweet.retweetCount ?? 0) + 1
+                    self.tableView.reloadData()
+                } else {
+                    print("Error retweeting")
+                }
+            })
+        } else {
+            TwitterClient.shared.unretweet(tweet: tweet, completion: { (tweet, error) in
+                if tweet != nil {
+                    print("Unretweeted")
+                    self.tweet.retweeted = false
+                    self.tweet.retweetCount = (self.tweet.retweetCount ?? 1) - 1
+                    self.tableView.reloadData()
+                } else {
+                    print("Error unretweeting")
+                }
+            })
+        }
     }
 
     @IBAction func onFavouriteButton(_ sender: Any) {
@@ -91,6 +112,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                 if tweet != nil {
                     print("Favourited!")
                     self.tweet.favorited = true
+                    self.tweet.favouritesCount = (self.tweet.favouritesCount ?? 0) + 1
                     if let button = sender as? UIButton {
                         button.imageView?.image = #imageLiteral(resourceName: "favorite-full-16")
                     }
@@ -104,6 +126,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                 if tweet != nil {
                     print("Unfavourited")
                     self.tweet.favorited = false
+                    self.tweet.favouritesCount = (self.tweet.favouritesCount ?? 1) - 1
                     if let button = sender as? UIButton {
                         button.imageView?.image = #imageLiteral(resourceName: "favorite-4-16")
                     }

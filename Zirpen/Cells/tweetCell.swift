@@ -63,13 +63,15 @@ class tweetCell: UITableViewCell {
         mediaView.isHidden = false
     }
     
-    func displayRetweet(_ tweet: Tweet) {
+    func displayRetweet(_ user: User?) {
         extraStatusView.isHidden = false
-        if let url = tweet.user?.profileURL {
+        if let url = user?.profileURL {
             retweetProfileImage.setImageWith(url)
         }
-        dateIntervalLabel.text = tweet.prettyInterval
-        retweetNameLabel.text = tweet.user?.name
+        retweetNameLabel.text = user?.name
+        if tweet.retweeted ?? false  && user?.screenName != User.currentUser?.screenName {
+            retweetNameLabel.text = retweetNameLabel.text! + " and You"
+        }
         retweetImage.image = #imageLiteral(resourceName: "retweet-1-16")
     }
     
@@ -82,7 +84,10 @@ class tweetCell: UITableViewCell {
         didSet {
             if tweet.retweetedTweet != nil {
                 displayTweet(tweet.retweetedTweet!)
-                displayRetweet(tweet)
+                displayRetweet(tweet.user)
+            } else  if tweet.retweeted ?? false {
+                displayTweet(tweet)
+                displayRetweet(User.currentUser)
             } else {
                 extraStatusView.isHidden = true
                 displayTweet(tweet)
