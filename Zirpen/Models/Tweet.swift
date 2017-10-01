@@ -10,7 +10,7 @@ import UIKit
 
 enum Media {
     case photo(URL)
-    case quoted(Tweet)
+//    case quoted(Tweet)
 }
 
 class Tweet: NSObject {
