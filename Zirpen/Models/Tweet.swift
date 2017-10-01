@@ -13,6 +13,28 @@ enum Media {
 //    case quoted(Tweet)
 }
 
+
+struct EntityURL {
+    let display_url: String
+    let expanded_url: String
+    let indices: [Int]
+}
+
+struct UserMention {
+    let user: User
+    let indices: [Int]
+}
+
+struct HashTag {
+    let text: String
+    let indices: [Int]
+}
+
+enum Entities {
+    case urls([EntityURL])
+    case userMentions([UserMention])
+}
+
 class Tweet: NSObject {
     
     var text: String?
@@ -31,6 +53,7 @@ class Tweet: NSObject {
     var retweeted: Bool
     var favorited: Bool
     var inReplyToIdStr: String?
+    var urls: [String]?
 
     var prettyInterval: String? {
         get {

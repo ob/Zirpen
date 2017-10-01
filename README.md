@@ -39,22 +39,31 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] Load media
-- [ ] 
+- [x] Loads and displays media
+- [x] Hyperlinks take you to Mobile Safari
 
 Please list two areas of the assignment you'd like to **discuss
 further with your peers** during the next class (examples include
 better ways to implement something, how to extend your app in certain
 ways, etc):
 
-1.
-2.
+1. I still don't feel like I understand the toolkit enough. Perhaps
+   what would be useful is a discusson of each of the controls and
+   views available, their capabilities and lifetimes. What gets called
+   when. Overally I still feel like I'm following recipes and stack
+   overflow articles; then I start getting some understanding only by
+   fighting strange bugs.
+
+2. Seeing an example of a *good application* would really help. How
+   did they organize the models and code? How did they avoid subtle
+   interaction bugs? Without a guide of what a good app looks like it
+   feels again like we're just discovering things on our own.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+ ![screenshot](/images/Zirpen.gif?raw=true "Screenshot of Zirpen")
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

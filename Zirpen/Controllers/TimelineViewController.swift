@@ -48,7 +48,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             refreshControl?.endRefreshing()
             if let tweets = tweets {
                 if self.maxId != nil {
-                    self.tweets.append(contentsOf: tweets)
+                    var newTweets = tweets
+                    newTweets.removeFirst()
+                    self.tweets.append(contentsOf: newTweets)
                 } else {
                     self.tweets = tweets
                 }

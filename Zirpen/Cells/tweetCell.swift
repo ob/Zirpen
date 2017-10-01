@@ -13,7 +13,6 @@ class tweetCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
-    @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var mediaView: UIView!
     @IBOutlet weak var retweetImage: UIImageView!
     @IBOutlet weak var retweetProfileImage: UIImageView!
@@ -21,13 +20,14 @@ class tweetCell: UITableViewCell {
     @IBOutlet weak var dateIntervalLabel: UILabel!
     @IBOutlet weak var extraStatusView: UIStackView!
     @IBOutlet weak var favoritedImageView: UIImageView!
-    
+    @IBOutlet weak var tweetTextView: UITextView!
+
     var detail = false
     var photoURL: URL?
     
     func displayTweet(_ tweet: Tweet) {
         nameLabel.text = tweet.user?.name
-        tweetTextLabel.text = tweet.text
+        tweetTextView.text = tweet.text
         screenNameLabel.text = tweet.user?.atScreenName
         dateIntervalLabel.text = tweet.prettyInterval
         profileImageView.image = #imageLiteral(resourceName: "person")
@@ -49,9 +49,6 @@ class tweetCell: UITableViewCell {
                     displayPhotoEmbedded(url: url)
                 }
             }
-        } else {
-            mediaView.isHidden = true
-            mediaView.subviews.forEach {$0.removeFromSuperview()}
         }
     }
     
@@ -85,6 +82,9 @@ class tweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
+            mediaView.isHidden = true
+            mediaView.subviews.forEach {$0.removeFromSuperview()}
+            print("Cleaning up subviews")
             updateLabels()
         }
     }
@@ -98,7 +98,7 @@ class tweetCell: UITableViewCell {
         
         retweetProfileImage.layer.cornerRadius = retweetProfileImage.frame.size.width / 2
         retweetProfileImage.clipsToBounds = true
-        updateLabels()
+
     }
 
     func updateLabels() {
@@ -116,6 +116,16 @@ class tweetCell: UITableViewCell {
             displayTweet(tweet)
         }
     }
+
+//    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+//        let hitView = super.hitTest(point, with: event)
+//        print("Hit Test called")
+//        if hitView == tweetTextView {
+//            print("TweetTextView Hitted")
+//            return hitView
+//        }
+//        return hitView
+//    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
