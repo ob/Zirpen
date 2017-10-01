@@ -14,7 +14,9 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var tweetTextField: UITextView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var tweetButton: UIBarButtonItem!
-
+    @IBOutlet weak var replyView: UIView!
+    @IBOutlet weak var replyingToLabel: UILabel!
+    
     var replyingTo: Tweet?
     var onDismiss: ((Tweet) -> Void)?
     
@@ -26,6 +28,7 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
         avatarImageView.layer.borderWidth = 1.0
         avatarImageView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
 
+        avatarImageView.image = #imageLiteral(resourceName: "person")
         if let user = User.currentUser,
             let url = user.profileURL {
             avatarImageView.setImageWith(url)
@@ -34,11 +37,31 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
         tweetButton.isEnabled = false
         tweetTextField.delegate = self
         tweetTextField.becomeFirstResponder()
-        // Do any additional setup after loading the view.
-        if let screenName = replyingTo?.user?.atScreenName {
-            tweetTextField.text = String(format: "%@ ", screenName)
-            countLabel.text = String(140 - screenName.utf8.count - 1)
+        replyView.isHidden = true
+        var user = replyingTo?.user
+        if replyingTo?.retweetedTweet != nil {
+            user = replyingTo?.retweetedTweet?.user
         }
+        if let screenName = user?.atScreenName {
+
+            replyingToLabel.text = String(format: "In Reply to %@", screenName)
+            replyView.isHidden = false
+        }
+
+        // try a toolbar above the keyboard
+//        let keyboardToolbar = UIToolbar()
+//        keyboardToolbar.sizeToFit()
+//        keyboardToolbar.isTranslucent = false
+//        keyboardToolbar.barTintColor = UIColor.white
+//
+//        let addButton = UIBarButtonItem(
+//            barButtonSystemItem: .done,
+//            target: self,
+//            action: #selector(buttonOne)
+//        )
+//        addButton.tintColor = UIColor.black
+//        keyboardToolbar.items = [addButton]
+//        tweetTextField.inputAccessoryView = keyboardToolbar
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -46,7 +69,7 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
         updateCountLabel(newLength)
         return true
     }
-    
+
     func updateCountLabel(_ length: Int) {
         let remaining = 140 - length
         if remaining < 0 {
@@ -65,10 +88,12 @@ class ComposeTweetController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func onCancelButton(_ sender: Any) {
+        tweetTextField.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func onTweetButton(_ sender: Any) {
+        tweetTextField.endEditing(true)
         let tweet = Tweet(user: User.currentUser!, text: tweetTextField.text, inReplyTo: replyingTo)
         TwitterClient.shared.tweet(tweet: tweet) { (tweet, error) in
             if error != nil {

@@ -15,16 +15,27 @@ class tweetControlsCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
-            if tweet.favorited {
-                favouriteButton.imageView?.image = #imageLiteral(resourceName: "favorite-full-16")
-            } else {
-                favouriteButton.imageView?.image = #imageLiteral(resourceName: "favorite-4-16")
-            }
+            updateLabels(tweet)
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        if tweet != nil {
+            updateLabels(tweet)
+        }
+    }
+
+    func updateLabels(_ tweet: Tweet) {
+        var faved = tweet.favorited
+        if tweet.retweetedTweet != nil {
+            faved = tweet.retweetedTweet!.favorited
+        }
+        if faved {
+            favouriteButton.imageView?.image = #imageLiteral(resourceName: "favorite-full-16")
+        } else {
+            favouriteButton.imageView?.image = #imageLiteral(resourceName: "favorite-4-16")
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

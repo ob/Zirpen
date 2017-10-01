@@ -15,6 +15,7 @@ class ImageDetailCell: UITableViewCell {
         didSet {
             photoImageView.clipsToBounds = true
             photoImageView.contentMode = .scaleAspectFit
+            photoImageView.image = #imageLiteral(resourceName: "person")
             photoImageView.setImageWith(photoURL!)
         }
     }
