@@ -75,11 +75,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
         if row == 2 {
             // it's the status
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetStatsCell", for: indexPath) as? TweetStatsCell {
-                if tweet.retweetedTweet != nil {
-                    cell.tweet = tweet.retweetedTweet
-                } else {
-                    cell.tweet = tweet
-                }
+                cell.tweet = tweet
                 cellsToReload.append(indexPath)
                 return cell
             }
@@ -87,7 +83,6 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
         if row == 3 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetControlsCell", for: indexPath) as? tweetControlsCell {
                 cell.tweet = tweet
-                cellsToReload.append(indexPath)
                 return cell
             }
         }
@@ -102,6 +97,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
         if !(tweet.retweeted) {
             TwitterClient.shared.retweet(tweet: tweet, completion: { (tweet, error) in
                 if tweet != nil {
+                    print("Retweeted")
                     tweet!.retweeted = true
                     tweet!.retweetCount = (tweet!.retweetCount ?? 0) + 1
                     self.tableView.reloadRows(at: self.cellsToReload, with: .none)
@@ -135,7 +131,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     tweet!.favorited = true
                     tweet!.favouritesCount = (tweet!.favouritesCount ?? 0) + 1
                     if let button = sender as? UIButton {
-                        button.imageView?.image = #imageLiteral(resourceName: "favorite-full-4-32")
+                        button.isSelected = true
                     }
                     self.tableView.reloadRows(at: self.cellsToReload, with: .none)
                 } else {
@@ -149,7 +145,7 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
                     tweet!.favorited = false
                     tweet!.favouritesCount = (tweet!.favouritesCount ?? 1) - 1
                     if let button = sender as? UIButton {
-                        button.imageView?.image = #imageLiteral(resourceName: "favorite-4-32")
+                        button.isSelected = false
                     }
                     self.tableView.reloadRows(at: self.cellsToReload, with: .none)
                 } else {

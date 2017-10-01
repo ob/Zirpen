@@ -21,6 +21,8 @@ class tweetControlsCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        favouriteButton.setImage(#imageLiteral(resourceName: "favorite-full-4-32"), for: .selected)
+        favouriteButton.setImage(#imageLiteral(resourceName: "favorite-4-32"), for: .normal)
         if tweet != nil {
             updateLabels(tweet)
         }
@@ -31,11 +33,7 @@ class tweetControlsCell: UITableViewCell {
         if tweet.retweetedTweet != nil {
             faved = tweet.retweetedTweet!.favorited
         }
-        if faved {
-            favouriteButton.imageView?.image = #imageLiteral(resourceName: "favorite-full-16")
-        } else {
-            favouriteButton.imageView?.image = #imageLiteral(resourceName: "favorite-4-16")
-        }
+        favouriteButton.isSelected = faved
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

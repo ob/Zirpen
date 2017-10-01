@@ -64,7 +64,7 @@ class tweetCell: UITableViewCell {
         mediaView.isHidden = false
     }
     
-    func displayRetweeter(_ user: User?) {
+    func displayRetweeter(_ user: User?, tweet: Tweet) {
         extraStatusView.isHidden = false
         retweetImage.image = #imageLiteral(resourceName: "person")
         if let url = user?.profileURL {
@@ -85,16 +85,7 @@ class tweetCell: UITableViewCell {
     
     var tweet: Tweet! {
         didSet {
-            if tweet.retweetedTweet != nil {
-                displayTweet(tweet.retweetedTweet!)
-                displayRetweeter(tweet.user)
-            } else  if tweet.retweeted {
-                displayTweet(tweet)
-                displayRetweeter(User.currentUser)
-            } else {
-                extraStatusView.isHidden = true
-                displayTweet(tweet)
-            }
+            updateLabels()
         }
     }
 
@@ -107,6 +98,23 @@ class tweetCell: UITableViewCell {
         
         retweetProfileImage.layer.cornerRadius = retweetProfileImage.frame.size.width / 2
         retweetProfileImage.clipsToBounds = true
+        updateLabels()
+    }
+
+    func updateLabels() {
+        guard tweet != nil else {
+            return
+        }
+        if tweet.retweetedTweet != nil {
+            displayTweet(tweet.retweetedTweet!)
+            displayRetweeter(tweet.user, tweet: tweet.retweetedTweet!)
+        } else  if tweet.retweeted {
+            displayTweet(tweet)
+            displayRetweeter(User.currentUser, tweet: tweet)
+        } else {
+            extraStatusView.isHidden = true
+            displayTweet(tweet)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
