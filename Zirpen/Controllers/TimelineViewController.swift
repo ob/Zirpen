@@ -74,7 +74,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetViewCell", for: indexPath) as? TweetViewCell {
             cell.tweet = tweets[indexPath.row]
             return cell
         }

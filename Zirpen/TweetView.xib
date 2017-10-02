@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetView" customModule="Zirpen" customModuleProvider="target">
+            <connections>
+                <outlet property="avatarImageView" destination="Tyh-a0-gVp" id="UUC-13-xdv"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="Pu8-j2-0O4"/>
+                <outlet property="favoritedImageView" destination="m3E-Gs-VFT" id="M1C-Qg-wM4"/>
+                <outlet property="howLongAgoLabel" destination="i3T-Ct-DHN" id="3SJ-IM-kCg"/>
+                <outlet property="mediaView" destination="Q2t-r8-bqf" id="WT4-fc-nqj"/>
+                <outlet property="nameLabel" destination="dk1-wo-XVP" id="5Eb-hM-dCh"/>
+                <outlet property="screenNameLabel" destination="wxg-ez-noj" id="htU-mF-JFm"/>
+                <outlet property="tweetTextLabel" destination="D9K-l7-G9d" id="uST-EN-I9M"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="567" height="355"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="doo-5B-4YV">
+                    <rect key="frame" x="0.0" y="12" width="567" height="331"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-Z0-FMh">
+                            <rect key="frame" x="0.0" y="0.0" width="567" height="281"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tyh-a0-gVp">
+                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="3C8-gl-Mkn"/>
+                                        <constraint firstAttribute="height" constant="48" id="RJV-gz-2NL"/>
+                                    </constraints>
+                                </imageView>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="aKi-bj-Pj8">
+                                    <rect key="frame" x="60" y="0.0" width="507" height="248.5"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G68-sZ-R2Q">
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="50"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oscar Bonilla" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dk1-wo-XVP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="220.5" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@obonilla" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxg-ez-noj">
+                                                    <rect key="frame" x="220.5" y="0.0" width="75" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3T-Ct-DHN">
+                                                    <rect key="frame" x="295.5" y="0.0" width="24.5" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m3E-Gs-VFT">
+                                                    <rect key="frame" x="320" y="0.0" width="50" height="50"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="m3E-Gs-VFT" secondAttribute="trailing" id="dGd-m7-cpT"/>
+                                            </constraints>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the text of the weet, #amazing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9K-l7-G9d">
+                                            <rect key="frame" x="0.0" y="52" width="370" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Q2t-r8-bqf">
+                                            <rect key="frame" x="0.0" y="74.5" width="370" height="156"/>
+                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jTM-1W-c1H">
+                                            <rect key="frame" x="0.0" y="232.5" width="370" height="16"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet-1-16" translatesAutoresizingMaskIntoConstraints="NO" id="O6p-qW-94d">
+                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="G9l-2v-hvf"/>
+                                                        <constraint firstAttribute="width" constant="16" id="QJE-3s-cp4"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bw6-zD-7sc">
+                                                    <rect key="frame" x="18" y="0.0" width="16" height="16"/>
+                                                    <color key="backgroundColor" red="0.75294119120000003" green="0.75294119120000003" blue="0.75294119120000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="D7X-je-JKD"/>
+                                                        <constraint firstAttribute="width" constant="16" id="TmA-a4-VAa"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retweted by Oscar Bonilla and You" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVd-H7-qGy">
+                                                    <rect key="frame" x="36" y="0.0" width="334" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="20" id="zLW-oq-Wyh"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="D9K-l7-G9d" firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="9nP-Nd-2NT"/>
+                                        <constraint firstItem="jTM-1W-c1H" firstAttribute="leading" secondItem="G68-sZ-R2Q" secondAttribute="leading" id="Fha-SX-JJu"/>
+                                        <constraint firstItem="jTM-1W-c1H" firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="RXL-jo-XtL"/>
+                                        <constraint firstItem="Q2t-r8-bqf" firstAttribute="leading" secondItem="G68-sZ-R2Q" secondAttribute="leading" id="dDy-K6-Bb3"/>
+                                        <constraint firstItem="D9K-l7-G9d" firstAttribute="leading" secondItem="G68-sZ-R2Q" secondAttribute="leading" id="fdb-ka-RHu"/>
+                                        <constraint firstItem="Q2t-r8-bqf" firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="h7P-bm-EMr"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <stackView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gHk-1v-3eM">
+                            <rect key="frame" x="0.0" y="281" width="567" height="50"/>
+                            <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Lc8-Z0-FMh" firstAttribute="leading" secondItem="doo-5B-4YV" secondAttribute="leading" id="6cC-z4-qJ9"/>
+                        <constraint firstAttribute="trailing" secondItem="Lc8-Z0-FMh" secondAttribute="trailing" id="aDo-CC-q8T"/>
+                        <constraint firstItem="gHk-1v-3eM" firstAttribute="leading" secondItem="doo-5B-4YV" secondAttribute="leading" id="cPX-CL-yDD"/>
+                        <constraint firstAttribute="trailing" secondItem="gHk-1v-3eM" secondAttribute="trailing" id="dye-BF-MXC"/>
+                        <constraint firstItem="Lc8-Z0-FMh" firstAttribute="top" secondItem="doo-5B-4YV" secondAttribute="top" id="t9A-ge-eas"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="doo-5B-4YV" secondAttribute="bottom" constant="12" id="HKZ-bx-WdQ"/>
+                <constraint firstAttribute="trailing" secondItem="doo-5B-4YV" secondAttribute="trailing" id="fWs-WP-CYK"/>
+                <constraint firstItem="doo-5B-4YV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="l00-VP-IIe"/>
+                <constraint firstItem="doo-5B-4YV" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="zs5-wA-Z0l"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-2.5" y="-27.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="retweet-1-16" width="16" height="16"/>
+    </resources>
+</document>

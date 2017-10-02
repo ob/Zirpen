@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		09730338B1755273244605A0 /* Pods_ZirpenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF3B98A48BA2889664F15A9 /* Pods_ZirpenTests.framework */; };
+		2E6041CC1F819C6F00BEFC07 /* TweetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E6041CB1F819C6F00BEFC07 /* TweetView.xib */; };
+		2E6041CE1F81A36100BEFC07 /* TweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6041CD1F81A36100BEFC07 /* TweetView.swift */; };
+		2E6041D01F81A5BD00BEFC07 /* TweetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6041CF1F81A5BD00BEFC07 /* TweetViewCell.swift */; };
 		9048CBB61EA188B129F9649D /* Pods_ZirpenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */; };
 		C47659AE1F7C50470019E645 /* tweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47659AD1F7C50470019E645 /* tweetCell.swift */; };
 		C493A7DF1F7DA0C200B93A61 /* TweetDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C493A7DE1F7DA0C200B93A61 /* TweetDetailController.swift */; };
@@ -49,6 +52,9 @@
 /* Begin PBXFileReference section */
 		081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZirpenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E0A4BE083A1AA333D4ED8E3 /* Pods-Zirpen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zirpen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Zirpen/Pods-Zirpen.debug.xcconfig"; sourceTree = "<group>"; };
+		2E6041CB1F819C6F00BEFC07 /* TweetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetView.xib; sourceTree = "<group>"; };
+		2E6041CD1F81A36100BEFC07 /* TweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetView.swift; sourceTree = "<group>"; };
+		2E6041CF1F81A5BD00BEFC07 /* TweetViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewCell.swift; sourceTree = "<group>"; };
 		854C293822320DD0097755B3 /* Pods-ZirpenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.release.xcconfig"; sourceTree = "<group>"; };
 		9D038CC5391A3CB64D11854A /* Pods-ZirpenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA46FA76586832836ABBE95 /* Pods-ZirpenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 		C47659AF1F7C504C0019E645 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2E6041CF1F81A5BD00BEFC07 /* TweetViewCell.swift */,
 				C493A7E61F7F178000B93A61 /* tweetControlsCell.swift */,
 				C493A7E41F7EEC7400B93A61 /* TweetStatsCell.swift */,
 				C493A7E21F7ED4E500B93A61 /* ImageDetailCell.swift */,
@@ -156,6 +163,8 @@
 		C4BC93501F7B0A06009B4904 /* Zirpen */ = {
 			isa = PBXGroup;
 			children = (
+				2E6041CB1F819C6F00BEFC07 /* TweetView.xib */,
+				2E6041CD1F81A36100BEFC07 /* TweetView.swift */,
 				C40A10C41F805284007BA690 /* Zirpen.entitlements */,
 				C47659AF1F7C504C0019E645 /* Cells */,
 				C4BC93831F7B2AD1009B4904 /* API */,
@@ -352,6 +361,7 @@
 			files = (
 				C4BC935C1F7B0A06009B4904 /* LaunchScreen.storyboard in Resources */,
 				C4BC93591F7B0A06009B4904 /* Assets.xcassets in Resources */,
+				2E6041CC1F819C6F00BEFC07 /* TweetView.xib in Resources */,
 				C4BC93571F7B0A06009B4904 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,9 +541,11 @@
 			files = (
 				C493A7E31F7ED4E500B93A61 /* ImageDetailCell.swift in Sources */,
 				C47659AE1F7C50470019E645 /* tweetCell.swift in Sources */,
+				2E6041CE1F81A36100BEFC07 /* TweetView.swift in Sources */,
 				C4BC93851F7B2AE8009B4904 /* User.swift in Sources */,
 				C4BC93871F7B2AF1009B4904 /* Tweet.swift in Sources */,
 				C493A7E51F7EEC7400B93A61 /* TweetStatsCell.swift in Sources */,
+				2E6041D01F81A5BD00BEFC07 /* TweetViewCell.swift in Sources */,
 				C4BC93811F7B1D32009B4904 /* LoginViewController.swift in Sources */,
 				C4BC93891F7BFDCC009B4904 /* TwitterClient.swift in Sources */,
 				C4BC93521F7B0A06009B4904 /* AppDelegate.swift in Sources */,
