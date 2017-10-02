@@ -11,7 +11,6 @@ import UIKit
 // https://medium.com/@brianclouser/swift-3-creating-a-custom-view-from-a-xib-ecdfe5b3a960
 class TweetView: UIView {
 
-    var tweet: Tweet?
 
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -21,9 +20,18 @@ class TweetView: UIView {
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var mediaView: UIView!
     @IBOutlet weak var retweetProfileImage: UIImageView!
-
     @IBOutlet var contentView: UIView!
 
+    var tweet: Tweet? {
+        didSet {
+            if tweet?.retweetedTweet != nil {
+                displayTweet(tweet!.retweetedTweet!)
+            } else {
+                displayTweet(tweet!)
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -52,5 +60,14 @@ class TweetView: UIView {
 
         retweetProfileImage.layer.cornerRadius = retweetProfileImage.frame.size.width / 2
         retweetProfileImage.clipsToBounds = true
+    }
+    
+    fileprivate func displayTweet(_ tweet: Tweet) {
+        if let url = tweet.user?.profileURL {
+            avatarImageView.setImageWith(url)
+        }
+        nameLabel.text = tweet.user?.name
+        screenNameLabel.text = tweet.user?.screenName
+        tweetTextLabel.text = tweet.text
     }
 }

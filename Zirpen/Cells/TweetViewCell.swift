@@ -11,7 +11,11 @@ import UIKit
 class TweetViewCell: UITableViewCell {
     @IBOutlet weak var tweetView: TweetView!
 
-    var tweet: Tweet!
+    var tweet: Tweet! {
+        didSet {
+            tweetView.tweet = tweet
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
