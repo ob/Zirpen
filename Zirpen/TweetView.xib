@@ -17,6 +17,7 @@
                 <outlet property="howLongAgoLabel" destination="i3T-Ct-DHN" id="3SJ-IM-kCg"/>
                 <outlet property="mediaView" destination="Q2t-r8-bqf" id="WT4-fc-nqj"/>
                 <outlet property="nameLabel" destination="dk1-wo-XVP" id="5Eb-hM-dCh"/>
+                <outlet property="retweetProfileImage" destination="Bw6-zD-7sc" id="HZs-UX-pzM"/>
                 <outlet property="screenNameLabel" destination="wxg-ez-noj" id="htU-mF-JFm"/>
                 <outlet property="tweetTextLabel" destination="D9K-l7-G9d" id="uST-EN-I9M"/>
             </connections>

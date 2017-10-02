@@ -20,7 +20,8 @@ class TweetView: UIView {
     @IBOutlet weak var favoritedImageView: UIImageView!
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var mediaView: UIView!
-    
+    @IBOutlet weak var retweetProfileImage: UIImageView!
+
     @IBOutlet var contentView: UIView!
 
     override init(frame: CGRect) {
@@ -39,5 +40,17 @@ class TweetView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.borderWidth = 1.0
+        avatarImageView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+
+        retweetProfileImage.layer.cornerRadius = retweetProfileImage.frame.size.width / 2
+        retweetProfileImage.clipsToBounds = true
     }
 }
