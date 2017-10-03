@@ -24,7 +24,7 @@ class TweetView: UIView {
     @IBOutlet weak var retweeterNameLabel: UILabel!
     @IBOutlet weak var retweetedByStackView: UIStackView!
     @IBOutlet weak var buttonsView: UIStackView!
-    
+
     var tweet: Tweet? {
         didSet {
             if tweet?.retweetedTweet != nil {
@@ -66,6 +66,8 @@ class TweetView: UIView {
 
         retweetProfileImage.layer.cornerRadius = retweetProfileImage.frame.size.width / 2
         retweetProfileImage.clipsToBounds = true
+
+        tweetTextLabel.preferredMaxLayoutWidth = 200.0
     }
     
     fileprivate func displayTweet(_ tweet: Tweet) {
