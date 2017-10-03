@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="513" height="294"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nvt-I7-3EL">
-                            <rect key="frame" x="0.0" y="0.0" width="227" height="128"/>
+                            <rect key="frame" x="0.0" y="0.0" width="227" height="294"/>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="23B-oz-sSi">
                             <rect key="frame" x="227" y="0.0" width="286" height="34"/>
@@ -74,6 +74,12 @@
                             </constraints>
                         </stackView>
                     </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="nvt-I7-3EL" secondAttribute="bottom" id="6ff-Cy-9RB"/>
+                        <constraint firstItem="nvt-I7-3EL" firstAttribute="top" secondItem="LCa-jo-iCe" secondAttribute="top" id="A4Z-tC-Co7"/>
+                        <constraint firstItem="nvt-I7-3EL" firstAttribute="leading" secondItem="LCa-jo-iCe" secondAttribute="leading" id="aTZ-mi-Zht"/>
+                        <constraint firstItem="23B-oz-sSi" firstAttribute="leading" secondItem="nvt-I7-3EL" secondAttribute="trailing" id="mbd-mx-ryE"/>
+                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>

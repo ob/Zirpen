@@ -1,0 +1,238 @@
+{
+    contributors = "<null>";
+    coordinates = "<null>";
+    "created_at" = "Wed Sep 27 23:39:31 +0000 2017";
+    entities =     {
+        hashtags =         (
+        );
+        symbols =         (
+        );
+        urls =         (
+        );
+        "user_mentions" =         (
+                        {
+                id = 576267366;
+                "id_str" = 576267366;
+                indices =                 (
+                    3,
+                    13
+                );
+                name = "LLLL \Uff1a\U30d5\U30a9\U30fc\U30a8\U30eb";
+                "screen_name" = LLLLTOKYO;
+            },
+                        {
+                id = 896940121206906881;
+                "id_str" = 896940121206906881;
+                indices =                 (
+                    43,
+                    50
+                );
+                name = "\U30ca\U30c4";
+                "screen_name" = "yeul_e";
+            },
+                        {
+                id = 18038269;
+                "id_str" = 18038269;
+                indices =                 (
+                    108,
+                    117
+                );
+                name = "The FADER";
+                "screen_name" = thefader;
+            }
+        );
+    };
+    "favorite_count" = 0;
+    favorited = 0;
+    geo = "<null>";
+    id = 913186372172709888;
+    "id_str" = 913186372172709888;
+    "in_reply_to_screen_name" = "<null>";
+    "in_reply_to_status_id" = "<null>";
+    "in_reply_to_status_id_str" = "<null>";
+    "in_reply_to_user_id" = "<null>";
+    "in_reply_to_user_id_str" = "<null>";
+    "is_quote_status" = 0;
+    lang = ja;
+    place = "<null>";
+    "retweet_count" = 2;
+    retweeted = 0;
+    "retweeted_status" =     {
+        contributors = "<null>";
+        coordinates = "<null>";
+        "created_at" = "Wed Sep 27 23:33:31 +0000 2017";
+        entities =         {
+            hashtags =             (
+            );
+            symbols =             (
+            );
+            urls =             (
+                                {
+                    "display_url" = "twitter.com/i/web/status/9\U2026";
+                    "expanded_url" = "https://twitter.com/i/web/status/913184859144675328";
+                    indices =                     (
+                        110,
+                        133
+                    );
+                    url = "https://t.co/FKaPwcUKro";
+                }
+            );
+            "user_mentions" =             (
+                                {
+                    id = 896940121206906881;
+                    "id_str" = 896940121206906881;
+                    indices =                     (
+                        28,
+                        35
+                    );
+                    name = "\U30ca\U30c4";
+                    "screen_name" = "yeul_e";
+                },
+                                {
+                    id = 18038269;
+                    "id_str" = 18038269;
+                    indices =                     (
+                        93,
+                        102
+                    );
+                    name = "The FADER";
+                    "screen_name" = thefader;
+                }
+            );
+        };
+        "favorite_count" = 7;
+        favorited = 0;
+        geo = "<null>";
+        id = 913184859144675328;
+        "id_str" = 913184859144675328;
+        "in_reply_to_screen_name" = "<null>";
+        "in_reply_to_status_id" = "<null>";
+        "in_reply_to_status_id_str" = "<null>";
+        "in_reply_to_user_id" = "<null>";
+        "in_reply_to_user_id_str" = "<null>";
+        "is_quote_status" = 0;
+        lang = ja;
+        place = "<null>";
+        "possibly_sensitive" = 0;
+        "possibly_sensitive_appealable" = 0;
+        "retweet_count" = 2;
+        retweeted = 0;
+        source = "<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>";
+        text = "my muse and amazing friend. @yeul_e release a new EP. check it out \U50d5\U306e\U5927\U5207\U306a\U53cb\U4eba\U30e6\U30fc\U30eb\U304c\U65b0\U4f5c\U3092\U30ea\U30ea\U30fc\U30b9\U3057\U307e\U3057\U305f\U3002\U3053\U3061\U3089@thefader \U8a18\U4e8b\U3067\U3059\U3002\U2026 https://t.co/FKaPwcUKro";
+        truncated = 1;
+        user =         {
+            "contributors_enabled" = 0;
+            "created_at" = "Thu May 10 12:19:32 +0000 2012";
+            "default_profile" = 0;
+            "default_profile_image" = 0;
+            description = "if you say you love me then die with me   lllltokyojapan@gmail.com";
+            entities =             {
+                description =                 {
+                    urls =                     (
+                    );
+                };
+                url =                 {
+                    urls =                     (
+                                                {
+                            "display_url" = "soundcloud.com/kazzykasborne/\U2026";
+                            "expanded_url" = "https://soundcloud.com/kazzykasborne/sets/llll-portfolio";
+                            indices =                             (
+                                0,
+                                23
+                            );
+                            url = "https://t.co/Yr5JdHxI2P";
+                        }
+                    );
+                };
+            };
+            "favourites_count" = 4728;
+            "follow_request_sent" = 0;
+            "followers_count" = 2944;
+            following = 0;
+            "friends_count" = 1492;
+            "geo_enabled" = 0;
+            "has_extended_profile" = 0;
+            id = 576267366;
+            "id_str" = 576267366;
+            "is_translation_enabled" = 0;
+            "is_translator" = 0;
+            lang = ja;
+            "listed_count" = 69;
+            location = "\U65e5\U672c \U6771\U4eac";
+            name = "LLLL \Uff1a\U30d5\U30a9\U30fc\U30a8\U30eb";
+            notifications = 0;
+            "profile_background_color" = 3B94D9;
+            "profile_background_image_url" = "http://pbs.twimg.com/profile_background_images/623574062237757440/Uq23RJ0a.png";
+            "profile_background_image_url_https" = "https://pbs.twimg.com/profile_background_images/623574062237757440/Uq23RJ0a.png";
+            "profile_background_tile" = 1;
+            "profile_banner_url" = "https://pbs.twimg.com/profile_banners/576267366/1476507845";
+            "profile_image_url" = "http://pbs.twimg.com/profile_images/912197929032605696/UffHhG8d_normal.jpg";
+            "profile_image_url_https" = "https://pbs.twimg.com/profile_images/912197929032605696/UffHhG8d_normal.jpg";
+            "profile_link_color" = 3B94D9;
+            "profile_sidebar_border_color" = FFFFFF;
+            "profile_sidebar_fill_color" = DDEEF6;
+            "profile_text_color" = 333333;
+            "profile_use_background_image" = 1;
+            protected = 0;
+            "screen_name" = LLLLTOKYO;
+            "statuses_count" = 4159;
+            "time_zone" = Irkutsk;
+            "translator_type" = none;
+            url = "https://t.co/Yr5JdHxI2P";
+            "utc_offset" = 28800;
+            verified = 0;
+        };
+    };
+    source = "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>";
+    text = "RT @LLLLTOKYO: my muse and amazing friend. @yeul_e release a new EP. check it out \U50d5\U306e\U5927\U5207\U306a\U53cb\U4eba\U30e6\U30fc\U30eb\U304c\U65b0\U4f5c\U3092\U30ea\U30ea\U30fc\U30b9\U3057\U307e\U3057\U305f\U3002\U3053\U3061\U3089@thefader \U8a18\U4e8b\U3067\U3059\U3002\U3000 https://t.co/o\U2026";
+    truncated = 0;
+    user =     {
+        "contributors_enabled" = 0;
+        "created_at" = "Wed Nov 21 15:08:43 +0000 2007";
+        "default_profile" = 0;
+        "default_profile_image" = 0;
+        description = "programmer @cloudflare. prev: @dropbox, @okcupid. trust your technolust. my degree is in massage not CS.";
+        entities =         {
+            description =             {
+                urls =                 (
+                );
+            };
+        };
+        "favourites_count" = 22172;
+        "follow_request_sent" = 0;
+        "followers_count" = 1035;
+        following = 1;
+        "friends_count" = 1002;
+        "geo_enabled" = 1;
+        "has_extended_profile" = 1;
+        id = 10442562;
+        "id_str" = 10442562;
+        "is_translation_enabled" = 0;
+        "is_translator" = 0;
+        lang = en;
+        "listed_count" = 41;
+        location = "San Francisco, CA";
+        name = "Jensen Kuras";
+        notifications = 0;
+        "profile_background_color" = FFFFFF;
+        "profile_background_image_url" = "http://pbs.twimg.com/profile_background_images/445951889733976065/Q-1KHYIX.jpeg";
+        "profile_background_image_url_https" = "https://pbs.twimg.com/profile_background_images/445951889733976065/Q-1KHYIX.jpeg";
+        "profile_background_tile" = 1;
+        "profile_banner_url" = "https://pbs.twimg.com/profile_banners/10442562/1398220991";
+        "profile_image_url" = "http://pbs.twimg.com/profile_images/803760826138042368/5Ms-izqc_normal.jpg";
+        "profile_image_url_https" = "https://pbs.twimg.com/profile_images/803760826138042368/5Ms-izqc_normal.jpg";
+        "profile_link_color" = 26A3BF;
+        "profile_sidebar_border_color" = FFFFFF;
+        "profile_sidebar_fill_color" = A0C5C7;
+        "profile_text_color" = 3474F5;
+        "profile_use_background_image" = 1;
+        protected = 0;
+        "screen_name" = jensechu;
+        "statuses_count" = 10927;
+        "time_zone" = "Pacific Time (US & Canada)";
+        "translator_type" = regular;
+        url = "<null>";
+        "utc_offset" = "-25200";
+        verified = 0;
+    };
+}
