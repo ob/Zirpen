@@ -34,7 +34,7 @@ class User: NSObject, Codable {
         }
         tagline = dictionary["description"] as? String
     }
-
+    
     class var currentUser: User? {
         get {
             let defaults = UserDefaults.standard

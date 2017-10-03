@@ -68,6 +68,8 @@ class TweetView: UIView {
         retweetProfileImage.clipsToBounds = true
 
         tweetTextLabel.preferredMaxLayoutWidth = 200.0
+        
+        favoritedImageView.tintColor = UIColor.red
     }
     
     fileprivate func displayTweet(_ tweet: Tweet) {
@@ -76,13 +78,36 @@ class TweetView: UIView {
         }
         nameLabel.text = tweet.user?.name
         screenNameLabel.text = String(format: "@%@", tweet.user!.screenName!)
-        tweetTextLabel.text = tweet.text
+        if let attrtext = tweet.prettyText {
+            tweetTextLabel.attributedText = attrtext
+        } else {
+            tweetTextLabel.text = tweet.text
+        }
         howLongAgoLabel.text = tweet.prettyInterval
         if tweet.favorited {
             favoritedImageView.isHidden = false
         } else {
             favoritedImageView.isHidden = true
         }
+        for entity in tweet.entities ?? [] {
+            switch entity {
+            case .media(let mediaArray):
+                displayMedia(media: mediaArray.first)
+            default:
+                continue
+            }
+        }
+    }
+    
+    fileprivate func displayMedia(media: Media?) {
+        guard let media = media else {
+            return
+        }
+        let imgView = UIImageView(frame: mediaView.frame)
+        imgView.clipsToBounds = true
+        imgView.setImageWith(media.mediaURLHTTPS)
+        mediaView.addSubview(imgView)
+        mediaView.isHidden = false
     }
 
     fileprivate func displayRetweeter(_ user: User, andYou: Bool) {

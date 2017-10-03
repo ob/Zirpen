@@ -41,15 +41,15 @@ class tweetCell: UITableViewCell {
         } else {
             favoritedImageView.isHidden = true
         }
-        if let media = tweet.media {
-            switch media {
-            case .photo(let url):
-                photoURL = url
-                if !detail {
-                    displayPhotoEmbedded(url: url)
-                }
-            }
-        }
+//        if let media = tweet.media {
+//            switch media {
+//            case .photo(let url):
+//                photoURL = url
+//                if !detail {
+//                    displayPhotoEmbedded(url: url)
+//                }
+//            }
+//        }
     }
     
     func displayPhotoEmbedded(url: URL) {

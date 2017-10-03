@@ -12,12 +12,12 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
     
     var tweet: Tweet! {
         didSet {
-            if let media = tweet.media {
-                switch media {
-                case .photo(let url):
-                    photoURL = url
-                }
-            }
+//            if let media = tweet.media {
+//                switch media {
+//                case .photo(let url):
+//                    photoURL = url
+//                }
+//            }
         }
     }
     var photoURL: URL?

@@ -8,31 +8,45 @@
 
 import UIKit
 
-enum Media {
-    case photo(URL)
-//    case quoted(Tweet)
+enum MediaType {
+    case photo
 }
 
+struct Media {
+    let displayURL: String
+    let expandedURL: URL
+    let indices: (Int, Int)
+    let mediaURL: URL
+    let mediaURLHTTPS: URL
+    let type: MediaType
+    let url: URL
+}
 
 struct EntityURL {
-    let display_url: String
-    let expanded_url: String
-    let indices: [Int]
+    let url: URL
+    let displayURL: String
+    let expandedURL: URL
+    let indices: (Int, Int)
 }
 
 struct UserMention {
-    let user: User
-    let indices: [Int]
+    let id: Int
+    let idStr: String
+    let name: String
+    let screenName: String
+    let indices: (Int, Int)
 }
 
 struct HashTag {
     let text: String
-    let indices: [Int]
+    let indices: (Int, Int)
 }
 
-enum Entities {
+enum Entity {
     case urls([EntityURL])
     case userMentions([UserMention])
+    case hashtag([HashTag])
+    case media([Media])
 }
 
 class Tweet: NSObject {
@@ -54,6 +68,7 @@ class Tweet: NSObject {
     var favorited: Bool
     var inReplyToIdStr: String?
     var urls: [String]?
+    var entities: [Entity]?
 
     var prettyInterval: String? {
         get {
@@ -139,12 +154,147 @@ class Tweet: NSObject {
         }
     }
 
+    var _prettyText: NSAttributedString?
+    var prettyText: NSAttributedString? {
+        get {
+            if _prettyText != nil {
+                return _prettyText
+            }
+            guard let txt = self.text else {
+                return nil
+            }
+            guard let entities = self.entities else {
+                return NSAttributedString(string: txt)
+            }
+            let retString = NSMutableAttributedString(string: txt)
+            for entity in entities {
+                switch entity {
+                case .hashtag(let hashtags):
+                    for hashtag in hashtags {
+                        retString.addAttributes([NSAttributedStringKey.strokeColor : UIColor.blue,
+                                                 NSAttributedStringKey.foregroundColor: UIColor.blue,
+                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(hashtag.indices.0, hashtag.indices.1 - hashtag.indices.0))
+                    }
+                case .media(let mediaArray):
+                    for media in mediaArray {
+                        switch media.type {
+                        case .photo:
+                            retString.deleteCharacters(in: NSMakeRange(media.indices.0, media.indices.1 - media.indices.0))
+                        }
+                    }
+                case .urls(let allURLs):
+                    for url in allURLs {
+                        retString.addAttributes([NSAttributedStringKey.strokeColor: UIColor.blue,
+                                                NSAttributedStringKey.foregroundColor: UIColor.blue,
+                                                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(url.indices.0, url.indices.1 - url.indices.0))
+                        retString.replaceCharacters(in: NSMakeRange(url.indices.0, url.indices.1-url.indices.0), with: url.displayURL)
+                    }
+                case .userMentions(let userMentions):
+                    for um in userMentions {
+                        retString.addAttributes([NSAttributedStringKey.strokeColor : UIColor.blue,
+                                                 NSAttributedStringKey.foregroundColor: UIColor.blue,
+                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(um.indices.0, um.indices.1 - um.indices.0) )
+                    }
+                    
+                }
+            }
+            _prettyText = retString
+            return retString
+        }
+    }
+
     init(user: User, text: String, inReplyTo: Tweet?) {
         self.text = text
         self.user = user
         self.inReplyToIdStr = inReplyTo?.idStr
         self.retweeted = false
         self.favorited = false
+    }
+    
+    fileprivate class func parseEntities(_ dictionary: NSDictionary) -> [Entity]? {
+        var entities = [Entity]()
+        if let mediaList = dictionary["media"] as? NSArray {
+            var allMedia = [Media]()
+            for media in mediaList {
+                guard let mediaDict = media as? NSDictionary else {
+                    continue
+                }
+                guard let type = mediaDict["type"] as? String else {
+                    continue
+                }
+                if type == "photo" {
+                    let displayURL = mediaDict["display_url"] as! String
+                    var url = mediaDict["expanded_url"] as! String
+                    let expandedURL = URL(string: url)!
+                    let indexArray = mediaDict["indices"] as! NSArray
+                    let index1 = indexArray[0] as! Int
+                    let index2 = indexArray[1] as! Int
+                    let indices = (index1, index2)
+                    url = mediaDict["media_url"] as! String
+                    let mediaURL = URL(string: url)!
+                    url = mediaDict["media_url_https"] as! String
+                    let mediaURLHTTPS = URL(string: url)!
+                    url = mediaDict["url"] as! String
+                    let url1 = URL(string: url)!
+                    let media = Media(displayURL: displayURL, expandedURL: expandedURL, indices: indices, mediaURL: mediaURL, mediaURLHTTPS: mediaURLHTTPS, type: .photo, url: url1)
+                    allMedia.append(media)
+                }
+            }
+            entities.append(Entity.media(allMedia))
+        }
+        if let hashtagList = dictionary["hashtags"] as? NSArray {
+            var hashtags = [HashTag]()
+            for hashtag in hashtagList {
+                guard let hashtagDict = hashtag as? NSDictionary else {
+                    continue
+                }
+                let txt = hashtagDict["text"] as! String
+                let indexArray = hashtagDict["indices"] as! NSArray
+                let idx1 = indexArray[0] as! Int
+                let idx2 = indexArray[1] as! Int
+                let hashtag = HashTag(text: txt, indices: (idx1, idx2))
+                hashtags.append(hashtag)
+            }
+            entities.append(Entity.hashtag(hashtags))
+        }
+        if let urlList = dictionary["urls"] as? NSArray {
+            var urls = [EntityURL]()
+            for url in urlList {
+                guard let urlDict = url as? NSDictionary else {
+                    continue
+                }
+                let urlString = urlDict["url"] as! String
+                let urlURL = URL(string: urlString)!
+                let displayURL = urlDict["display_url"] as! String
+                let expandedURLString = urlDict["expanded_url"] as! String
+                let expandedURL = URL(string: expandedURLString)!
+                let indexArray = urlDict["indices"] as! NSArray
+                let idx1 = indexArray[0] as! Int
+                let idx2 = indexArray[1] as! Int
+                let url = EntityURL(url: urlURL, displayURL: displayURL, expandedURL: expandedURL, indices: (idx1, idx2))
+                urls.append(url)
+            }
+            entities.append(Entity.urls(urls))
+        }
+        if let userMentionsArray = dictionary["user_mentions"] as? NSArray {
+            var userMentions = [UserMention]()
+            for userMention in userMentionsArray {
+                guard let userMentionDict = userMention as? NSDictionary else {
+                    continue
+                }
+                let name = userMentionDict["name"] as! String
+                let screenName = userMentionDict["screen_name"] as! String
+                let id = userMentionDict["id"] as! Int
+                let idStr = userMentionDict["id_str"] as! String
+                let indexArray = userMentionDict["indices"] as! NSArray
+                let idx1 = indexArray[0] as! Int
+                let idx2 = indexArray[1] as! Int
+                let userMention = UserMention(id: id, idStr: idStr, name: name, screenName: screenName, indices: (idx1, idx2))
+                userMentions.append(userMention)
+            }
+            entities.append(Entity.userMentions(userMentions))
+        }
+        return entities
     }
     
     init(dictionary: NSDictionary) {
@@ -171,22 +321,8 @@ class Tweet: NSObject {
             quotedTweet = Tweet.init(dictionary: quotedDict)
         }
         
-        if let entitiesDict = dictionary["entities"] as? NSDictionary,
-            let mediaList = entitiesDict["media"] as? NSArray {
-            for media in mediaList {
-                guard let mediaDict = media as? NSDictionary else {
-                    continue
-                }
-                guard let type = mediaDict["type"] as? String else {
-                    continue
-                }
-                if type == "photo" {
-                    if let urlString = mediaDict["media_url_https"] as? String,
-                        let url = URL(string: urlString) {
-                            self.media = Media.photo(url)
-                    }
-                }
-            }
+        if let entitiesDict = dictionary["entities"] as? NSDictionary {
+            entities = Tweet.parseEntities(entitiesDict)
         }
         
         id = dictionary["id"] as? Int

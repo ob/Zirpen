@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13526" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -79,7 +79,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="i3T-Ct-DHN" firstAttribute="leading" secondItem="wxg-ez-noj" secondAttribute="trailing" constant="4" id="I0t-Sw-tGR"/>
-                                                <constraint firstItem="m3E-Gs-VFT" firstAttribute="leading" secondItem="i3T-Ct-DHN" secondAttribute="trailing" constant="4" id="XQD-zp-gY5"/>
                                                 <constraint firstAttribute="trailing" secondItem="m3E-Gs-VFT" secondAttribute="trailing" id="eFS-ev-e1g"/>
                                             </constraints>
                                         </stackView>
