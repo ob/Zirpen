@@ -42,6 +42,11 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if refreshControl != nil {
             maxId = nil
         }
+//        for _ in 0...10 {
+//            let tweet = Tweet(user: User.currentUser!, text: "This is a nice long tweet that should be very intersting to read. I'm mostly interested in the layout anywa so we'll see what happens.", inReplyTo: nil)
+//            tweets.append(tweet)
+//        }
+//        return
         TwitterClient.shared.homeTimeline(fromId: maxId) { (tweets, error) in
             self.isDataLoading = false
             self.spinner?.stopAnimating()

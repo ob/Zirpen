@@ -21,13 +21,19 @@ class TweetView: UIView {
     @IBOutlet weak var mediaView: UIView!
     @IBOutlet weak var retweetProfileImage: UIImageView!
     @IBOutlet var contentView: UIView!
-
+    @IBOutlet weak var retweeterNameLabel: UILabel!
+    @IBOutlet weak var retweetedByStackView: UIStackView!
+    @IBOutlet weak var buttonsView: UIStackView!
+    
     var tweet: Tweet? {
         didSet {
             if tweet?.retweetedTweet != nil {
                 displayTweet(tweet!.retweetedTweet!)
+                displayRetweeter(tweet!.user!, andYou: tweet!.retweeted)
+                retweetedByStackView.isHidden = false
             } else {
                 displayTweet(tweet!)
+                retweetedByStackView.isHidden = true
             }
         }
     }
@@ -67,7 +73,27 @@ class TweetView: UIView {
             avatarImageView.setImageWith(url)
         }
         nameLabel.text = tweet.user?.name
-        screenNameLabel.text = tweet.user?.screenName
+        screenNameLabel.text = String(format: "@%@", tweet.user!.screenName!)
         tweetTextLabel.text = tweet.text
+        howLongAgoLabel.text = tweet.prettyInterval
+        if tweet.favorited {
+            favoritedImageView.isHidden = false
+        } else {
+            favoritedImageView.isHidden = true
+        }
+    }
+
+    fileprivate func displayRetweeter(_ user: User, andYou: Bool) {
+        if let url = user.profileURL {
+            retweetProfileImage.setImageWith(url)
+        }
+        var retweetString = "Retweeted by "
+        if let name = user.name {
+            retweetString.append(name)
+        }
+        if andYou {
+            retweetString.append("and You")
+        }
+        retweeterNameLabel.text = retweetString
     }
 }
