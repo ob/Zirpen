@@ -8,6 +8,7 @@ target 'Zirpen' do
   # Pods for Zirpen
   pod 'AFNetworking'
   pod 'BDBOAuth1Manager'
+  pod 'FLEX', '~> 2.0', :configurations => ['Debug']
 
   target 'ZirpenTests' do
     inherit! :search_paths

@@ -33,6 +33,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl!.addTarget(self, action: #selector(loadTweets(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl!, at: 0)
         
+        
+        
         loadTweets(nil)
     }
 

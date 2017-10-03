@@ -184,6 +184,11 @@ class Tweet: NSObject {
                     }
                 case .urls(let allURLs):
                     for url in allURLs {
+                        // remove quoted tweets since we'll display them inline
+                        if url.displayURL.starts(with: "twitter.com") {
+                            retString.deleteCharacters(in: NSMakeRange(url.indices.0, url.indices.1 - url.indices.0))
+                            continue
+                        }
                         retString.addAttributes([NSAttributedStringKey.strokeColor: UIColor.blue,
                                                 NSAttributedStringKey.foregroundColor: UIColor.blue,
                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(url.indices.0, url.indices.1 - url.indices.0))
@@ -200,6 +205,28 @@ class Tweet: NSObject {
             }
             _prettyText = retString
             return retString
+        }
+    }
+    
+    var imageURL: URL? {
+        get {
+            guard let entities = self.entities else {
+                return nil
+            }
+            for entity in entities {
+                switch entity {
+                case .media(let mediaArray):
+                    for media in mediaArray {
+                        switch media.type {
+                        case .photo:
+                            return media.mediaURLHTTPS
+                        }
+                    }
+                default:
+                    continue
+                }
+            }
+            return nil
         }
     }
 
@@ -298,7 +325,7 @@ class Tweet: NSObject {
     }
     
     init(dictionary: NSDictionary) {
-        print(dictionary)
+//        print(dictionary)
         //  "coordinates": null,
         truncated = dictionary["truncated"] as? Bool
         text = dictionary["text"] as? String
@@ -317,7 +344,7 @@ class Tweet: NSObject {
             retweetedTweet = Tweet.init(dictionary: retweetDict)
         }
         
-        if let quotedDict = dictionary["quoted_tweet"] as? NSDictionary {
+        if let quotedDict = dictionary["quoted_status"] as? NSDictionary {
             quotedTweet = Tweet.init(dictionary: quotedDict)
         }
         

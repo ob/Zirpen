@@ -89,6 +89,8 @@ class TweetView: UIView {
         } else {
             favoritedImageView.isHidden = true
         }
+        mediaView.subviews.forEach { $0.removeFromSuperview() }
+        mediaView.isHidden = true
         for entity in tweet.entities ?? [] {
             switch entity {
             case .media(let mediaArray):
@@ -97,17 +99,30 @@ class TweetView: UIView {
                 continue
             }
         }
+        if tweet.quotedTweet != nil {
+            displayQuotedTweet(tweet.quotedTweet!)
+        }
+    }
+    
+    fileprivate func displayQuotedTweet(_ tweet: Tweet) {
+        print("DISPLAYING QUOTED TWEET: \(tweet.text!)")
+        let quotedTweetView = MiniTweetView(frame: CGRect(x: 0, y: 0, width: mediaView.frame.width, height: mediaView.frame.height))
+        quotedTweetView.tweet = tweet
+        mediaView.addSubview(quotedTweetView)
+        mediaView.isHidden = false
     }
     
     fileprivate func displayMedia(media: Media?) {
         guard let media = media else {
             return
         }
-        let imgView = UIImageView(frame: mediaView.frame)
+        mediaView.isHidden = false
+        let imgView = UIImageView(frame: CGRect(x: 0, y: 0, width: mediaView.frame.width, height: mediaView.frame.height))
         imgView.clipsToBounds = true
+        imgView.contentMode = .scaleAspectFit
+        imgView.isHidden = false
         imgView.setImageWith(media.mediaURLHTTPS)
         mediaView.addSubview(imgView)
-        mediaView.isHidden = false
     }
 
     fileprivate func displayRetweeter(_ user: User, andYou: Bool) {

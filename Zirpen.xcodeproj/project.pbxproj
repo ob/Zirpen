@@ -12,6 +12,8 @@
 		2E6041CE1F81A36100BEFC07 /* TweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6041CD1F81A36100BEFC07 /* TweetView.swift */; };
 		2E6041D01F81A5BD00BEFC07 /* TweetViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6041CF1F81A5BD00BEFC07 /* TweetViewCell.swift */; };
 		9048CBB61EA188B129F9649D /* Pods_ZirpenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */; };
+		C47543D31F8445F1002BEEE5 /* MiniTweetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C47543D21F8445F1002BEEE5 /* MiniTweetView.xib */; };
+		C47543D51F844609002BEEE5 /* MiniTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47543D41F844609002BEEE5 /* MiniTweetView.swift */; };
 		C47659AE1F7C50470019E645 /* tweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47659AD1F7C50470019E645 /* tweetCell.swift */; };
 		C493A7DF1F7DA0C200B93A61 /* TweetDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C493A7DE1F7DA0C200B93A61 /* TweetDetailController.swift */; };
 		C493A7E11F7DBFA200B93A61 /* ComposeTweetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C493A7E01F7DBFA200B93A61 /* ComposeTweetController.swift */; };
@@ -59,6 +61,8 @@
 		9D038CC5391A3CB64D11854A /* Pods-ZirpenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA46FA76586832836ABBE95 /* Pods-ZirpenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C40A10C41F805284007BA690 /* Zirpen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Zirpen.entitlements; sourceTree = "<group>"; };
+		C47543D21F8445F1002BEEE5 /* MiniTweetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniTweetView.xib; sourceTree = "<group>"; };
+		C47543D41F844609002BEEE5 /* MiniTweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniTweetView.swift; sourceTree = "<group>"; };
 		C47659AD1F7C50470019E645 /* tweetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tweetCell.swift; sourceTree = "<group>"; };
 		C493A7DE1F7DA0C200B93A61 /* TweetDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetDetailController.swift; sourceTree = "<group>"; };
 		C493A7E01F7DBFA200B93A61 /* ComposeTweetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTweetController.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 		C4BC93501F7B0A06009B4904 /* Zirpen */ = {
 			isa = PBXGroup;
 			children = (
+				C47543D21F8445F1002BEEE5 /* MiniTweetView.xib */,
+				C47543D41F844609002BEEE5 /* MiniTweetView.swift */,
 				2E6041CB1F819C6F00BEFC07 /* TweetView.xib */,
 				2E6041CD1F81A36100BEFC07 /* TweetView.swift */,
 				C40A10C41F805284007BA690 /* Zirpen.entitlements */,
@@ -362,6 +368,7 @@
 				C4BC935C1F7B0A06009B4904 /* LaunchScreen.storyboard in Resources */,
 				C4BC93591F7B0A06009B4904 /* Assets.xcassets in Resources */,
 				2E6041CC1F819C6F00BEFC07 /* TweetView.xib in Resources */,
+				C47543D31F8445F1002BEEE5 /* MiniTweetView.xib in Resources */,
 				C4BC93571F7B0A06009B4904 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,11 +498,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Zirpen/Pods-Zirpen-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/BDBOAuth1Manager/BDBOAuth1Manager.framework",
+				"${BUILT_PRODUCTS_DIR}/FLEX/FLEX.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BDBOAuth1Manager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLEX.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -548,6 +557,7 @@
 				2E6041D01F81A5BD00BEFC07 /* TweetViewCell.swift in Sources */,
 				C4BC93811F7B1D32009B4904 /* LoginViewController.swift in Sources */,
 				C4BC93891F7BFDCC009B4904 /* TwitterClient.swift in Sources */,
+				C47543D51F844609002BEEE5 /* MiniTweetView.swift in Sources */,
 				C4BC93521F7B0A06009B4904 /* AppDelegate.swift in Sources */,
 				C493A7E11F7DBFA200B93A61 /* ComposeTweetController.swift in Sources */,
 				C493A7DF1F7DA0C200B93A61 /* TweetDetailController.swift in Sources */,

@@ -34,7 +34,7 @@
                     <rect key="frame" x="8" y="8" width="580" height="346"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-Z0-FMh">
-                            <rect key="frame" x="0.0" y="0.0" width="580" height="312"/>
+                            <rect key="frame" x="0.0" y="0.0" width="580" height="320"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Tyh-a0-gVp">
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
@@ -44,8 +44,8 @@
                                         <constraint firstAttribute="height" constant="48" id="RJV-gz-2NL"/>
                                     </constraints>
                                 </imageView>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="aKi-bj-Pj8">
-                                    <rect key="frame" x="60" y="0.0" width="520" height="60.5"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="aKi-bj-Pj8">
+                                    <rect key="frame" x="60" y="0.0" width="520" height="64.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="G68-sZ-R2Q">
                                             <rect key="frame" x="0.0" y="0.0" width="520" height="16"/>
@@ -83,17 +83,19 @@
                                             </constraints>
                                         </stackView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="This is the text of the weet, #amazing" textAlignment="natural" lineBreakMode="clip" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="537" translatesAutoresizingMaskIntoConstraints="NO" id="D9K-l7-G9d">
-                                            <rect key="frame" x="0.0" y="20" width="520" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="22" width="520" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Q2t-r8-bqf">
-                                            <rect key="frame" x="0.0" y="42.5" width="520" height="0.0"/>
-                                            <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <rect key="frame" x="0.0" y="45.5" width="520" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="QoR-pw-ZlR"/>
+                                            </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="jTM-1W-c1H">
-                                            <rect key="frame" x="0.0" y="44.5" width="520" height="16"/>
+                                            <rect key="frame" x="0.0" y="48.5" width="520" height="16"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="retweet-1-16" translatesAutoresizingMaskIntoConstraints="NO" id="O6p-qW-94d">
                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -124,9 +126,9 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="Q2t-r8-bqf" firstAttribute="leading" secondItem="D9K-l7-G9d" secondAttribute="leading" id="0OL-BU-7bk"/>
                                         <constraint firstItem="Q2t-r8-bqf" firstAttribute="leading" secondItem="G68-sZ-R2Q" secondAttribute="leading" id="0zR-GE-ew8"/>
                                         <constraint firstItem="Q2t-r8-bqf" firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="1eA-w3-0gO"/>
-                                        <constraint firstItem="Q2t-r8-bqf" firstAttribute="leading" secondItem="aKi-bj-Pj8" secondAttribute="leading" id="31j-te-DNe"/>
                                         <constraint firstItem="jTM-1W-c1H" firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="581-Mm-8Z9"/>
                                         <constraint firstItem="jTM-1W-c1H" firstAttribute="leading" secondItem="aKi-bj-Pj8" secondAttribute="leading" id="D8B-YT-kEr"/>
                                         <constraint firstItem="D9K-l7-G9d" firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="DGu-CZ-E7j"/>
@@ -137,29 +139,29 @@
                                         <constraint firstItem="jTM-1W-c1H" firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="RXL-jo-XtL"/>
                                         <constraint firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="YEl-tI-p2r"/>
                                         <constraint firstItem="G68-sZ-R2Q" firstAttribute="leading" secondItem="aKi-bj-Pj8" secondAttribute="leading" id="ZUs-IU-uzT"/>
+                                        <constraint firstItem="Q2t-r8-bqf" firstAttribute="trailing" secondItem="D9K-l7-G9d" secondAttribute="trailing" id="bSG-t2-ziH"/>
                                         <constraint firstItem="Q2t-r8-bqf" firstAttribute="leading" secondItem="G68-sZ-R2Q" secondAttribute="leading" id="dDy-K6-Bb3"/>
                                         <constraint firstItem="Q2t-r8-bqf" firstAttribute="trailing" secondItem="G68-sZ-R2Q" secondAttribute="trailing" id="h7P-bm-EMr"/>
                                         <constraint firstAttribute="trailing" secondItem="jTM-1W-c1H" secondAttribute="trailing" id="h7y-xa-6pO"/>
                                         <constraint firstItem="D9K-l7-G9d" firstAttribute="leading" secondItem="G68-sZ-R2Q" secondAttribute="leading" id="oKa-vh-1r0"/>
-                                        <constraint firstAttribute="trailing" secondItem="Q2t-r8-bqf" secondAttribute="trailing" id="oLL-cb-Kcv"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
                         </stackView>
                         <stackView clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gHk-1v-3eM">
-                            <rect key="frame" x="0.0" y="316" width="580" height="30"/>
+                            <rect key="frame" x="0.0" y="324" width="580" height="22"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXe-x1-xdZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="190.5" height="30"/>
-                                    <state key="normal" title="Reply"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXe-x1-xdZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="190.5" height="22"/>
+                                    <state key="normal" image="reply-4-16"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJv-D0-SRO">
-                                    <rect key="frame" x="194.5" y="0.0" width="191" height="30"/>
-                                    <state key="normal" title="Retweet"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJv-D0-SRO">
+                                    <rect key="frame" x="194.5" y="0.0" width="191" height="22"/>
+                                    <state key="normal" image="retweet-1-16"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4P-0Q-T8I">
-                                    <rect key="frame" x="389.5" y="0.0" width="190.5" height="30"/>
-                                    <state key="normal" title="Favorite"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4P-0Q-T8I">
+                                    <rect key="frame" x="389.5" y="0.0" width="190.5" height="22"/>
+                                    <state key="normal" image="favorite-4-16"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -186,7 +188,9 @@
         </view>
     </objects>
     <resources>
+        <image name="favorite-4-16" width="16" height="16"/>
         <image name="favorite-full-16" width="16" height="16"/>
+        <image name="reply-4-16" width="16" height="16"/>
         <image name="retweet-1-16" width="16" height="16"/>
     </resources>
 </document>
