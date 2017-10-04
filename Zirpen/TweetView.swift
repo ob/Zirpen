@@ -25,15 +25,19 @@ class TweetView: UIView {
     @IBOutlet weak var retweetedByStackView: UIStackView!
     @IBOutlet weak var buttonsView: UIStackView!
 
+    
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var replyButton: UIButton!
+    
     var tweet: Tweet? {
         didSet {
+            retweetedByStackView.isHidden = true
             if tweet?.retweetedTweet != nil {
                 displayTweet(tweet!.retweetedTweet!)
                 displayRetweeter(tweet!.user!, andYou: tweet!.retweeted)
-                retweetedByStackView.isHidden = false
             } else {
                 displayTweet(tweet!)
-                retweetedByStackView.isHidden = true
             }
         }
     }
@@ -70,6 +74,11 @@ class TweetView: UIView {
         tweetTextLabel.preferredMaxLayoutWidth = 200.0
         
         favoritedImageView.tintColor = UIColor.red
+        
+        favoriteButton.setImage(#imageLiteral(resourceName: "favorite-4-16"), for: .normal)
+        favoriteButton.setImage(#imageLiteral(resourceName: "favorite-full-16"), for: .selected)
+        favoriteButton.isSelected = false
+
     }
     
     fileprivate func displayTweet(_ tweet: Tweet) {
@@ -102,10 +111,10 @@ class TweetView: UIView {
         if tweet.quotedTweet != nil {
             displayQuotedTweet(tweet.quotedTweet!)
         }
+        favoriteButton.isSelected = tweet.favorited
     }
     
     fileprivate func displayQuotedTweet(_ tweet: Tweet) {
-        print("DISPLAYING QUOTED TWEET: \(tweet.text!)")
         let quotedTweetView = MiniTweetView(frame: CGRect(x: 0, y: 0, width: mediaView.frame.width, height: mediaView.frame.height))
         quotedTweetView.tweet = tweet
         mediaView.addSubview(quotedTweetView)
@@ -125,17 +134,84 @@ class TweetView: UIView {
         mediaView.addSubview(imgView)
     }
 
-    fileprivate func displayRetweeter(_ user: User, andYou: Bool) {
-        if let url = user.profileURL {
+    fileprivate func displayRetweeter(_ rtuser: User?, andYou: Bool) {
+        var user: User? = rtuser
+        var retweetedByMe = andYou
+        if user == nil {
+            user = User.currentUser
+            retweetedByMe = false
+        }
+        guard user != nil || retweetedByMe else {
+            return
+        }
+        if let url = user!.profileURL {
             retweetProfileImage.setImageWith(url)
         }
         var retweetString = "Retweeted by "
-        if let name = user.name {
+        if let name = user!.name {
             retweetString.append(name)
         }
-        if andYou {
+        if retweetedByMe {
             retweetString.append("and You")
         }
         retweeterNameLabel.text = retweetString
+        retweetedByStackView.isHidden = false
+    }
+    
+    @IBAction func favoriteButtonTapped(_ sender: Any) {
+        var tweet: Tweet = self.tweet!
+        if tweet.retweetedTweet != nil {
+            tweet = tweet.retweetedTweet!
+        }
+        if tweet.favorited {
+            TwitterClient.shared.unfavourite(tweet: tweet, completion: { (tweet, error) in
+                if error == nil {
+                    self.favoriteButton.isSelected = false
+                    self.tweet?.favorited = false
+                } else {
+                    print("FAILED: \(error!.localizedDescription)")
+                }
+            })
+        } else {
+            TwitterClient.shared.favourite(tweet: tweet, completion: { (tweet, error) in
+                if error == nil {
+                    self.favoriteButton.isSelected = true
+                    self.tweet?.favorited = true
+                } else {
+                    print("FAILED: \(error!.localizedDescription)")
+                }
+            })
+        }
+    }
+    
+    @IBAction func retweetButtonTapped(_ sender: Any) {
+        var tweet: Tweet = self.tweet!
+        var retweetUser: User?
+        if tweet.retweetedTweet != nil {
+            tweet = tweet.retweetedTweet!
+            retweetUser = tweet.user
+        }
+        if tweet.retweeted {
+            TwitterClient.shared.unretweet(tweet: tweet, completion: { (tweet, error) in
+                if error == nil {
+                    self.tweet?.retweeted = false
+                    self.displayRetweeter(retweetUser, andYou: false)
+                } else {
+                    print("FAILED: \(error!.localizedDescription)")
+                }
+            })
+        } else {
+            TwitterClient.shared.retweet(tweet: tweet, completion: { (tweet, error) in
+                if error == nil {
+                    self.tweet?.retweeted = true
+                    self.displayRetweeter(retweetUser, andYou: true)
+                } else {
+                    print("FAILED: \(error!.localizedDescription)")
+                }
+            })
+        }
+    }
+    
+    @IBAction func replyButtonTapped(_ sender: Any) {
     }
 }

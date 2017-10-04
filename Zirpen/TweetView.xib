@@ -14,10 +14,13 @@
                 <outlet property="avatarImageView" destination="Tyh-a0-gVp" id="UUC-13-xdv"/>
                 <outlet property="buttonsView" destination="gHk-1v-3eM" id="eqX-xM-orq"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Pu8-j2-0O4"/>
+                <outlet property="favoriteButton" destination="M4P-0Q-T8I" id="hpj-nM-puo"/>
                 <outlet property="favoritedImageView" destination="m3E-Gs-VFT" id="M1C-Qg-wM4"/>
                 <outlet property="howLongAgoLabel" destination="i3T-Ct-DHN" id="3SJ-IM-kCg"/>
                 <outlet property="mediaView" destination="Q2t-r8-bqf" id="WT4-fc-nqj"/>
                 <outlet property="nameLabel" destination="dk1-wo-XVP" id="5Eb-hM-dCh"/>
+                <outlet property="replyButton" destination="MXe-x1-xdZ" id="bNk-H7-oFI"/>
+                <outlet property="retweetButton" destination="lJv-D0-SRO" id="dOX-T4-Q11"/>
                 <outlet property="retweetProfileImage" destination="Bw6-zD-7sc" id="HZs-UX-pzM"/>
                 <outlet property="retweetedByStackView" destination="jTM-1W-c1H" id="aLJ-bi-iYr"/>
                 <outlet property="retweeterNameLabel" destination="hVd-H7-qGy" id="lQE-Td-EYy"/>
@@ -154,14 +157,23 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MXe-x1-xdZ">
                                     <rect key="frame" x="0.0" y="0.0" width="190.5" height="22"/>
                                     <state key="normal" image="reply-4-16"/>
+                                    <connections>
+                                        <action selector="replyButtonTapped:" destination="-1" eventType="touchUpInside" id="S8J-cC-sFf"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJv-D0-SRO">
                                     <rect key="frame" x="194.5" y="0.0" width="191" height="22"/>
                                     <state key="normal" image="retweet-1-16"/>
+                                    <connections>
+                                        <action selector="retweetButtonTapped:" destination="-1" eventType="touchUpInside" id="ZTi-rC-pse"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4P-0Q-T8I">
                                     <rect key="frame" x="389.5" y="0.0" width="190.5" height="22"/>
                                     <state key="normal" image="favorite-4-16"/>
+                                    <connections>
+                                        <action selector="favoriteButtonTapped:" destination="-1" eventType="touchUpInside" id="jzi-KP-BTI"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
