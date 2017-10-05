@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Zirpen/Models/Tweet.swift"
-            timestampString = "528769033.118977"
+            timestampString = "528940622.852535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"
@@ -96,6 +96,22 @@
             startingLineNumber = "205"
             endingLineNumber = "205"
             landmarkName = "retweetButtonTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Zirpen/TweetView.swift"
+            timestampString = "528838281.69916"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "displayQuotedTweet(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

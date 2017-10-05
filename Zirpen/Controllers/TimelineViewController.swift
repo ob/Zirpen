@@ -96,19 +96,19 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? TweetDetailController,
-            let indexPath = tableView.indexPath(for: sender as! tweetCell) {
-            vc.tweet = tweets[indexPath.row]
-            vc.onDismiss = { [weak self] () in
-                self?.tableView.reloadRows(at: [indexPath], with: .none)
-            }
-        }
-        if let vc = segue.destination as? ComposeTweetController {
-            vc.onDismiss = { (tweet) in
-                self.tweets.insert(tweet, at: 0)
-                self.tableView.reloadData()
-            }
-        }
+//        if let vc = segue.destination as? TweetDetailController,
+//            let indexPath = tableView.indexPath(for: sender as! tweetCell) {
+//            vc.tweet = tweets[indexPath.row]
+//            vc.onDismiss = { [weak self] () in
+//                self?.tableView.reloadRows(at: [indexPath], with: .none)
+//            }
+//        }
+//        if let vc = segue.destination as? ComposeTweetController {
+//            vc.onDismiss = { (tweet) in
+//                self.tweets.insert(tweet, at: 0)
+//                self.tableView.reloadData()
+//            }
+//        }
     }
 
     /*

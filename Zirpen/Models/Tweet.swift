@@ -166,42 +166,61 @@ class Tweet: NSObject {
             guard let entities = self.entities else {
                 return NSAttributedString(string: txt)
             }
-            let retString = NSMutableAttributedString(string: txt)
+            let retString = NSMutableAttributedString(string: "")
+            var indices = [((Int, Int), NSAttributedString)]()
             for entity in entities {
                 switch entity {
                 case .hashtag(let hashtags):
                     for hashtag in hashtags {
-                        retString.addAttributes([NSAttributedStringKey.strokeColor : UIColor.blue,
+                        let txt = NSMutableAttributedString(string: "#")
+                        txt.append(NSMutableAttributedString(string: hashtag.text))
+                        txt.addAttributes([NSAttributedStringKey.strokeColor : UIColor.blue,
                                                  NSAttributedStringKey.foregroundColor: UIColor.blue,
-                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(hashtag.indices.0, hashtag.indices.1 - hashtag.indices.0))
+                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(0, txt.length))
+                        indices.append((hashtag.indices, txt))
                     }
                 case .media(let mediaArray):
                     for media in mediaArray {
                         switch media.type {
                         case .photo:
-                            retString.deleteCharacters(in: NSMakeRange(media.indices.0, media.indices.1 - media.indices.0))
+                            indices.append((media.indices, NSAttributedString(string: "")))
                         }
                     }
                 case .urls(let allURLs):
                     for url in allURLs {
                         // remove quoted tweets since we'll display them inline
                         if url.displayURL.starts(with: "twitter.com") {
-                            retString.deleteCharacters(in: NSMakeRange(url.indices.0, url.indices.1 - url.indices.0))
+                            indices.append((url.indices, NSAttributedString(string: "")))
                             continue
                         }
-                        retString.addAttributes([NSAttributedStringKey.strokeColor: UIColor.blue,
+                        let txt = NSMutableAttributedString(string: url.displayURL)
+                        txt.addAttributes([NSAttributedStringKey.strokeColor: UIColor.blue,
                                                 NSAttributedStringKey.foregroundColor: UIColor.blue,
-                                                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(url.indices.0, url.indices.1 - url.indices.0))
-                        retString.replaceCharacters(in: NSMakeRange(url.indices.0, url.indices.1-url.indices.0), with: url.displayURL)
+                                                NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(0, txt.length))
+                        indices.append((url.indices, txt))
                     }
                 case .userMentions(let userMentions):
                     for um in userMentions {
-                        retString.addAttributes([NSAttributedStringKey.strokeColor : UIColor.blue,
+                        let txt = NSMutableAttributedString(string: "@")
+                        txt.append(NSMutableAttributedString(string: um.screenName))
+                        txt.addAttributes([NSAttributedStringKey.strokeColor : UIColor.blue,
                                                  NSAttributedStringKey.foregroundColor: UIColor.blue,
-                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(um.indices.0, um.indices.1 - um.indices.0) )
+                                                 NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17.0)], range: NSMakeRange(0, txt.length))
+                        indices.append((um.indices, txt))
                     }
-                    
                 }
+            }
+            var startIndex = String.Index.init(encodedOffset: 0)
+            for j in indices.sorted(by: { $0.0.0 < $1.0.0 }) {
+                let jIndex = String.Index.init(encodedOffset: j.0.0)
+                if startIndex < jIndex {
+                    retString.append(NSAttributedString(string: String(txt[startIndex..<jIndex])))
+                }
+                retString.append(j.1)
+                startIndex = String.Index.init(encodedOffset: j.0.1)
+            }
+            if startIndex < txt.endIndex {
+                retString.append(NSAttributedString(string: String(txt[startIndex..<txt.endIndex])))
             }
             _prettyText = retString
             return retString
