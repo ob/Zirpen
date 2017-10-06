@@ -10,10 +10,42 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var taglineLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    
+    var user: User! {
+        didSet {
+            view.layoutIfNeeded()
+            if let url = user.profileBannerURL {
+                backgroundImageView.setImageWith(url)
+            }
+            if let url = user.profileURL {
+                avatarImageView.setImageWith(url)
+            }
+            nameLabel.text = user.name
+            screenNameLabel.text = user.atScreenName
+            taglineLabel.text = user.tagline
+            followersCountLabel.attributedText = user.prettyFollowersCount
+            followingCountLabel.attributedText = user.prettyFollowingCount
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.borderWidth = 1.0
+        avatarImageView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        avatarImageView.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        
+        backgroundImageView.alpha = 0.8
+        backgroundImageView.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -48,7 +48,7 @@ class HamburgerMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,6 +59,7 @@ class HamburgerMenuViewController: UIViewController {
     fileprivate func closeMenu() {
         UIView.animate(withDuration: 0.3) {
             self.leftMarginConstraint.constant = 0
+            self.contentView.alpha = 1.0
             self.view.layoutIfNeeded()
         }
     }
@@ -66,6 +67,7 @@ class HamburgerMenuViewController: UIViewController {
     fileprivate func openMenu() {
         UIView.animate(withDuration: 0.3) {
             self.leftMarginConstraint.constant = self.view.frame.size.width - 100
+            self.contentView.alpha = 0.5
             self.view.layoutIfNeeded()
         }
     }

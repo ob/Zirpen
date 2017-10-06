@@ -39,12 +39,17 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
         }
         nameLabel.text = User.currentUser?.name
         screenNameLabel.text = User.currentUser?.atScreenName
+        followersLabel.attributedText = User.currentUser?.prettyFollowersCount
+        followingLabel.attributedText = User.currentUser?.prettyFollowingCount
         tableView.delegate = self
         tableView.dataSource = self
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         timelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
         profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController")
+        if let vc = profileNavigationController.childViewControllers[0] as? ProfileViewController {
+            vc.user = User.currentUser
+        }
         mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
         viewControllers.append(timelineNavigationController)
         viewControllers.append(profileNavigationController)
