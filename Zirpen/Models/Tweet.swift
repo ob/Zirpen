@@ -148,7 +148,7 @@ class Tweet: NSObject {
     }
     
     init(dictionary: NSDictionary) {
-        print(dictionary)
+        // print(dictionary)
         //  "coordinates": null,
         truncated = dictionary["truncated"] as? Bool
         text = dictionary["text"] as? String

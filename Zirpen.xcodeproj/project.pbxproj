@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		09730338B1755273244605A0 /* Pods_ZirpenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAF3B98A48BA2889664F15A9 /* Pods_ZirpenTests.framework */; };
+		2E6041F01F871FA900BEFC07 /* HamburgerMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6041EF1F871FA900BEFC07 /* HamburgerMenuViewController.swift */; };
+		2E6041F21F87211200BEFC07 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6041F11F87211200BEFC07 /* SideMenuViewController.swift */; };
+		2E6041F41F87410400BEFC07 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6041F31F87410400BEFC07 /* ProfileViewController.swift */; };
+		2E6041F61F8741B900BEFC07 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6041F51F8741B900BEFC07 /* SideMenuCell.swift */; };
 		9048CBB61EA188B129F9649D /* Pods_ZirpenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */; };
 		C47659AE1F7C50470019E645 /* tweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47659AD1F7C50470019E645 /* tweetCell.swift */; };
 		C493A7DF1F7DA0C200B93A61 /* TweetDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C493A7DE1F7DA0C200B93A61 /* TweetDetailController.swift */; };
@@ -49,6 +53,10 @@
 /* Begin PBXFileReference section */
 		081191C6668F8A1957502FA6 /* Pods_ZirpenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZirpenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E0A4BE083A1AA333D4ED8E3 /* Pods-Zirpen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zirpen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Zirpen/Pods-Zirpen.debug.xcconfig"; sourceTree = "<group>"; };
+		2E6041EF1F871FA900BEFC07 /* HamburgerMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerMenuViewController.swift; sourceTree = "<group>"; };
+		2E6041F11F87211200BEFC07 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		2E6041F31F87410400BEFC07 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		2E6041F51F8741B900BEFC07 /* SideMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		854C293822320DD0097755B3 /* Pods-ZirpenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.release.xcconfig"; sourceTree = "<group>"; };
 		9D038CC5391A3CB64D11854A /* Pods-ZirpenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenTests/Pods-ZirpenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAA46FA76586832836ABBE95 /* Pods-ZirpenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZirpenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZirpenUITests/Pods-ZirpenUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -123,6 +131,7 @@
 		C47659AF1F7C504C0019E645 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				2E6041F51F8741B900BEFC07 /* SideMenuCell.swift */,
 				C493A7E61F7F178000B93A61 /* tweetControlsCell.swift */,
 				C493A7E41F7EEC7400B93A61 /* TweetStatsCell.swift */,
 				C493A7E21F7ED4E500B93A61 /* ImageDetailCell.swift */,
@@ -191,6 +200,9 @@
 		C4BC937F1F7B1D15009B4904 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2E6041F31F87410400BEFC07 /* ProfileViewController.swift */,
+				2E6041F11F87211200BEFC07 /* SideMenuViewController.swift */,
+				2E6041EF1F871FA900BEFC07 /* HamburgerMenuViewController.swift */,
 				C493A7E01F7DBFA200B93A61 /* ComposeTweetController.swift */,
 				C493A7DE1F7DA0C200B93A61 /* TweetDetailController.swift */,
 				C4BC93801F7B1D32009B4904 /* LoginViewController.swift */,
@@ -531,14 +543,18 @@
 			files = (
 				C493A7E31F7ED4E500B93A61 /* ImageDetailCell.swift in Sources */,
 				C47659AE1F7C50470019E645 /* tweetCell.swift in Sources */,
+				2E6041F01F871FA900BEFC07 /* HamburgerMenuViewController.swift in Sources */,
 				C4BC93851F7B2AE8009B4904 /* User.swift in Sources */,
+				2E6041F21F87211200BEFC07 /* SideMenuViewController.swift in Sources */,
 				C4BC93871F7B2AF1009B4904 /* Tweet.swift in Sources */,
 				C493A7E51F7EEC7400B93A61 /* TweetStatsCell.swift in Sources */,
+				2E6041F61F8741B900BEFC07 /* SideMenuCell.swift in Sources */,
 				C4BC93811F7B1D32009B4904 /* LoginViewController.swift in Sources */,
 				C4BC93891F7BFDCC009B4904 /* TwitterClient.swift in Sources */,
 				C4BC93521F7B0A06009B4904 /* AppDelegate.swift in Sources */,
 				C493A7E11F7DBFA200B93A61 /* ComposeTweetController.swift in Sources */,
 				C493A7DF1F7DA0C200B93A61 /* TweetDetailController.swift in Sources */,
+				2E6041F41F87410400BEFC07 /* ProfileViewController.swift in Sources */,
 				C4BC938B1F7C0AC9009B4904 /* TimelineViewController.swift in Sources */,
 				C493A7E71F7F178000B93A61 /* tweetControlsCell.swift in Sources */,
 			);

@@ -84,7 +84,6 @@ class tweetCell: UITableViewCell {
         didSet {
             mediaView.isHidden = true
             mediaView.subviews.forEach {$0.removeFromSuperview()}
-            print("Cleaning up subviews")
             updateLabels()
         }
     }

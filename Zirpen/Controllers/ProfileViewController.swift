@@ -1,36 +1,27 @@
 //
-//  LoginViewController.swift
+//  ProfileViewController.swift
 //  Zirpen
 //
-//  Created by Oscar Bonilla on 9/26/17.
+//  Created by Oscar Bonilla on 10/5/17.
 //  Copyright © 2017 Oscar Bonilla. All rights reserved.
 //
 
 import UIKit
-import BDBOAuth1Manager
 
-class LoginViewController: UIViewController {
-
-    @IBOutlet weak var errorLabel: UILabel!
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLoginButton(_ sender: Any) {
-        TwitterClient.shared.login { (success, error) in
-            if success {
-                self.performSegue(withIdentifier: "HamburgerSegue", sender: nil)
-            } else {
-                self.errorLabel.text?.append(error!.localizedDescription)
-            }
-        }
-    }
-    
+
     /*
     // MARK: - Navigation
 
