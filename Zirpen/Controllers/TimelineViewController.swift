@@ -16,7 +16,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     var spinner: UIActivityIndicatorView?
     var refreshControl: UIRefreshControl?
     var isDataLoading = false
-    
+    var timeline: Timeline!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +33,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(loadTweets(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl!, at: 0)
-        
+
         loadTweets(nil)
     }
 
@@ -42,7 +43,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         if refreshControl != nil {
             maxId = nil
         }
-        TwitterClient.shared.homeTimeline(fromId: maxId) { (tweets, error) in
+
+        TwitterClient.shared.timeline(timeline: timeline, fromId: maxId) { (tweets, error) in
             self.isDataLoading = false
             self.spinner?.stopAnimating()
             refreshControl?.endRefreshing()

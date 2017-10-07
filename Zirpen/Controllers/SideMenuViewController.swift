@@ -46,11 +46,17 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         timelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+        if let vc = timelineNavigationController.childViewControllers.first as? TimelineViewController {
+            vc.timeline = .Home
+        }
         profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController")
         if let vc = profileNavigationController.childViewControllers[0] as? ProfileViewController {
             vc.user = User.currentUser
         }
         mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
+        if let vc = mentionsNavigationController.childViewControllers.first as? TimelineViewController {
+            vc.timeline = .Mentions
+        }
         viewControllers.append(timelineNavigationController)
         viewControllers.append(profileNavigationController)
         viewControllers.append(mentionsNavigationController)
