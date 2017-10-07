@@ -10,25 +10,25 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
-    @IBOutlet weak var backgroundImageView: UIImageView!
+    var headerImageView: UIImageView!
+    var headerBlurImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var taglineLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var header: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
 
     var user: User! {
         didSet {
             view.layoutIfNeeded()
-            if let url = user.profileBannerURL {
-                backgroundImageView.setImageWith(url)
-            }
             if let url = user.profileURL {
                 avatarImageView.setImageWith(url)
             }
             nameLabel.text = user.name
+            headerLabel.text = user.name
             screenNameLabel.text = user.atScreenName
             taglineLabel.text = user.tagline
             followersCountLabel.attributedText = user.prettyFollowersCount
@@ -43,11 +43,29 @@ class ProfileViewController: UIViewController {
         avatarImageView.layer.borderWidth = 1.0
         avatarImageView.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         avatarImageView.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        
-        backgroundImageView.alpha = 0.8
-        backgroundImageView.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
-        doneButton.accessibilityElementsHidden = true
-        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        headerImageView = UIImageView(frame: header.bounds)
+        if let url = user.profileBannerURL {
+            headerImageView?.setImageWith(url)
+        }
+        headerImageView?.contentMode = UIViewContentMode.scaleAspectFill
+        header.insertSubview(headerImageView, belowSubview: headerLabel)
+
+        // Header - Blurred Image
+
+        headerBlurImageView = UIImageView(frame: header.bounds)
+//        headerBlurImageView?.image = UIImage(named: "header_bg")?.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
+        headerBlurImageView?.contentMode = UIViewContentMode.scaleAspectFill
+        headerBlurImageView?.alpha = 0.0
+        header.insertSubview(headerBlurImageView, belowSubview: headerLabel)
+
+        header.clipsToBounds = true
+
     }
 
     override func didReceiveMemoryWarning() {
