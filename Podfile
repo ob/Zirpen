@@ -8,6 +8,7 @@ target 'Zirpen' do
   # Pods for Zirpen
   pod 'AFNetworking'
   pod 'BDBOAuth1Manager'
+  pod 'FXBlurView'
 
   target 'ZirpenTests' do
     inherit! :search_paths
