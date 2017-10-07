@@ -17,6 +17,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     var refreshControl: UIRefreshControl?
     var isDataLoading = false
     var timeline: Timeline!
+    var user: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +45,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             maxId = nil
         }
 
-        TwitterClient.shared.timeline(timeline: timeline, fromId: maxId) { (tweets, error) in
+        TwitterClient.shared.timeline(user: user, timeline: timeline, fromId: maxId) { (tweets, error) in
             self.isDataLoading = false
             self.spinner?.stopAnimating()
             refreshControl?.endRefreshing()
@@ -78,6 +79,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
             cell.tweet = tweets[indexPath.row]
+            cell.onAvatarTap =  { (user) in
+                self.performSegue(withIdentifier: "profileSegue", sender: user)
+            }
             return cell
         }
         assert(false)
@@ -97,11 +101,20 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             vc.onDismiss = { [weak self] () in
                 self?.tableView.reloadRows(at: [indexPath], with: .none)
             }
+            return
         }
         if let vc = segue.destination as? ComposeTweetController {
             vc.onDismiss = { (tweet) in
                 self.tweets.insert(tweet, at: 0)
                 self.tableView.reloadData()
+            }
+            return
+        }
+        if let nc = segue.destination as? UINavigationController,
+            let vc = nc.viewControllers.first as? ProfileViewController {
+            if let user = sender as? User {
+                vc.user = user
+                return
             }
         }
     }

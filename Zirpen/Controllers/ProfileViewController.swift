@@ -17,7 +17,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var taglineLabel: UILabel!
     @IBOutlet weak var followingCountLabel: UILabel!
     @IBOutlet weak var followersCountLabel: UILabel!
-    
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+
     var user: User! {
         didSet {
             view.layoutIfNeeded()
@@ -45,6 +46,7 @@ class ProfileViewController: UIViewController {
         
         backgroundImageView.alpha = 0.8
         backgroundImageView.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        doneButton.accessibilityElementsHidden = true
         
     }
 
@@ -53,6 +55,9 @@ class ProfileViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func doneTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

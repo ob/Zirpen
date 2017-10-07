@@ -59,7 +59,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         return true
     }
 
-    func timeline(timeline: Timeline, fromId: Int?, completion: @escaping (([Tweet]?, Error?) -> Void)) {
+    func timeline(user: User?, timeline: Timeline, fromId: Int?, completion: @escaping (([Tweet]?, Error?) -> Void)) {
         var parameters = [String:Any]()
         if let id = fromId {
             parameters["max_id"] = id
@@ -71,6 +71,10 @@ class TwitterClient: BDBOAuth1SessionManager {
         case .Mentions:
             endpoint = "1.1/statuses/mentions_timeline.json"
         }
+        if let user = user,
+            let screenname = user.screenName {
+            parameters["screen_name"] = screenname
+        }
         get(endpoint, parameters: parameters, progress: nil, success: { (task, response) in
             if let responseDictionaryArray = response as? [NSDictionary] {
                 let tweets = Tweet.fromDictionaryArray(dictionaryArray: responseDictionaryArray)
@@ -81,7 +85,6 @@ class TwitterClient: BDBOAuth1SessionManager {
         }, failure: { (task, error) in
             completion(nil, error)
         })
-
     }
 
     func authorizedUser(completion: @escaping ((User?, Error?) -> Void)) {

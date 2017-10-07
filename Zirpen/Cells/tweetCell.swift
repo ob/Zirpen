@@ -22,6 +22,8 @@ class tweetCell: UITableViewCell {
     @IBOutlet weak var favoritedImageView: UIImageView!
     @IBOutlet weak var tweetTextView: UITextView!
 
+    var onAvatarTap: ((User) -> Void)?
+
     var detail = false
     var photoURL: URL?
     
@@ -98,6 +100,19 @@ class tweetCell: UITableViewCell {
         retweetProfileImage.layer.cornerRadius = retweetProfileImage.frame.size.width / 2
         retweetProfileImage.clipsToBounds = true
 
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
+        profileImageView.addGestureRecognizer(tapGestureRecognizer)
+
+    }
+
+    @objc func handleTap(sender: UITapGestureRecognizer) {
+        var letweet: Tweet
+        if tweet.retweetedTweet != nil {
+            letweet = tweet!.retweetedTweet!
+        } else {
+            letweet = tweet!
+        }
+        onAvatarTap?(letweet.user!)
     }
 
     func updateLabels() {

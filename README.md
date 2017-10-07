@@ -33,10 +33,13 @@ The following **additional** features are implemented:
 
 - [ ] List anything else that you can get done to improve the app functionality!
 
-Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
+Please list two areas of the assignment you'd like to **discuss
+further with your peers** during the next class (examples include
+better ways to implement something, how to extend your app in certain
+ways, etc):
 
-  1.
-  2.
+  1. I think it'd be worth discussing a well-designed app (twitter is a great example) and showing design tradeoffs.
+  2. An overview of available controls and techniques for using them would help.
 
 
 ## Video Walkthrough
@@ -53,7 +56,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] Oscar Bonilla
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

@@ -155,16 +155,28 @@ class TweetDetailController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
 
+    @IBAction func profileImageTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "userDetailsSegue", sender: self)
+    }
+
     @IBAction func onReplyButton(_ sender: Any) {
         performSegue(withIdentifier: "composeTweet", sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("preparing for Segue")
         if let nc = segue.destination as? UINavigationController,
             let vc = nc.viewControllers[0] as? ComposeTweetController {
             print("Passing on the tweet")
             vc.replyingTo = tweet
+            return
+        }
+        if let nc = segue.destination as? UINavigationController,
+            let vc = nc.viewControllers.first as? ProfileViewController {
+            if tweet.retweetedTweet != nil {
+                vc.user = tweet.retweetedTweet?.user
+            } else {
+                vc.user = tweet.user
+            }
         }
     }
 
