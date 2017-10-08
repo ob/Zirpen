@@ -1,6 +1,6 @@
-# Project 4 - *Name of App Here*
+# Project 4 - *Zirpen*
 
-Time spent: **6** hours spent in total
+Time spent: **12** hours spent in total
 
 ## User Stories
 
@@ -31,7 +31,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] Profile view closely mimics Twitter's design. That is, avatar
+- [x] Profile view closely mimics Twitter's design. That is, avatar
   image shrinks, label becomes title, text scrolls off while tableview
   scrolls.
 
@@ -54,7 +54,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Bad decisions last week meant it was harder to work with this than it
+should've been. Lack of time for refactoring and making it easy to
+work with.
 
 ## License
 
