@@ -10,7 +10,7 @@ import UIKit
 import BDBOAuth1Manager
 
 enum Timeline {
-    case Home, Mentions
+    case Home, Mentions, UserTimeline
 }
 
 class TwitterClient: BDBOAuth1SessionManager {
@@ -70,6 +70,8 @@ class TwitterClient: BDBOAuth1SessionManager {
             endpoint = "1.1/statuses/home_timeline.json"
         case .Mentions:
             endpoint = "1.1/statuses/mentions_timeline.json"
+        case .UserTimeline:
+            endpoint = "1.1/statuses/user_timeline.json"
         }
         if let user = user,
             let screenname = user.screenName {

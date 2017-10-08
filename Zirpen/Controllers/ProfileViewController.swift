@@ -9,11 +9,12 @@
 import UIKit
 import FXBlurView
 
-let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
-let offset_B_LabelHeader:CGFloat = 95.0 // At this offset the Black label reaches the Header
-let distance_W_LabelHeader:CGFloat = 35.0 // The distance between the bottom of the Header and the top of the White Label
+let offset_HeaderStop:CGFloat = 40.0
+let offset_B_LabelHeader:CGFloat = 95.0
+let distance_W_LabelHeader:CGFloat = 35.0
+let offset_tableView:CGFloat = 250.0
 
-class ProfileViewController: UIViewController, UIScrollViewDelegate {
+class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var headerImageView: UIImageView!
     var headerBlurImageView: UIImageView!
@@ -26,6 +27,14 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var header: UIView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var tableView: UITableView!
+
+    var maxId: Int?
+    var spinner: UIActivityIndicatorView?
+    var refreshControl: UIRefreshControl?
+    var isDataLoading = false
+
+    var tweets: [Tweet] = [Tweet]()
 
     var user: User! {
         didSet {
@@ -41,6 +50,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
             followingCountLabel.attributedText = user.prettyFollowingCount
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,6 +64,13 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         navigationController?.navigationBar.isTranslucent = true
 
         scrollView.delegate = self
+
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.isScrollEnabled = false
+        tableView.tableFooterView = UIView()
+
+        loadTweets(nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -78,6 +95,33 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
+    @objc func loadTweets(_ refreshControl: UIRefreshControl?) {
+        isDataLoading = true
+        spinner?.startAnimating()
+        if refreshControl != nil {
+            maxId = nil
+        }
+
+        TwitterClient.shared.timeline(user: user, timeline: .UserTimeline, fromId: maxId) { (tweets, error) in
+            self.isDataLoading = false
+            self.spinner?.stopAnimating()
+            refreshControl?.endRefreshing()
+            if let tweets = tweets {
+                if self.maxId != nil {
+                    var newTweets = tweets
+                    newTweets.removeFirst()
+                    self.tweets.append(contentsOf: newTweets)
+                } else {
+                    self.tweets = tweets
+                }
+                self.maxId = tweets.last?.id
+                self.tableView.reloadData()
+            } else {
+                print("error: \(error!.localizedDescription)")
+            }
+        }
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,6 +134,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offset = scrollView.contentOffset.y
+
+        print("offset = \(offset)")
+        if scrollView == self.scrollView  && offset > offset_tableView {
+                print("Scrolling tableView")
+                tableView.isScrollEnabled = true
+                scrollView.isScrollEnabled = false
+        } else if scrollView == self.tableView && offset <= 0 {
+            print("Scrolling scrollView")
+            tableView.isScrollEnabled = false
+            scrollView.isScrollEnabled = true
+        }
         var avatarTransform = CATransform3DIdentity
         var headerTransform = CATransform3DIdentity
         if offset < 0 {
@@ -100,6 +155,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
 
             header.layer.transform = headerTransform
         } else {
+
             headerTransform = CATransform3DTranslate(headerTransform, 0, max(-offset_HeaderStop, -offset), 0)
 
             let labelTransform = CATransform3DMakeTranslation(0, max(-distance_W_LabelHeader, offset_B_LabelHeader - offset), 0)
@@ -113,12 +169,11 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
             avatarTransform = CATransform3DScale(avatarTransform, 1.0 - avatarScaleFactor, 1.0 - avatarScaleFactor, 0)
 
             if offset <= offset_HeaderStop {
-
                 if avatarImageView.layer.zPosition < header.layer.zPosition{
                     header.layer.zPosition = 0
                 }
 
-            }else {
+            } else {
                 if avatarImageView.layer.zPosition >= header.layer.zPosition{
                     header.layer.zPosition = 2
                 }
@@ -135,7 +190,56 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return UIStatusBarStyle.lightContent
     }
-    
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweets.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
+            cell.tweet = tweets[indexPath.row]
+            cell.onAvatarTap =  { (user) in
+                self.performSegue(withIdentifier: "profileSegue", sender: user)
+            }
+            return cell
+        }
+        assert(false)
+        return UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == tweets.count - 1 && !isDataLoading {
+            loadTweets(nil)
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? TweetDetailController,
+            let indexPath = tableView.indexPath(for: sender as! tweetCell) {
+            vc.tweet = tweets[indexPath.row]
+            vc.onDismiss = { [weak self] () in
+                self?.tableView.reloadRows(at: [indexPath], with: .none)
+            }
+            return
+        }
+        if let vc = segue.destination as? ComposeTweetController {
+            vc.onDismiss = { (tweet) in
+                self.tweets.insert(tweet, at: 0)
+                self.tableView.reloadData()
+            }
+            return
+        }
+        if let nc = segue.destination as? UINavigationController,
+            let vc = nc.viewControllers.first as? ProfileViewController {
+            if let user = sender as? User {
+                vc.user = user
+                return
+            }
+        }
+    }
+
+
+
     /*
     // MARK: - Navigation
 
