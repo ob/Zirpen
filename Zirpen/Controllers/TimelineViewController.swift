@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import AFNetworking
 
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backNavBarButton: UIBarButtonItem!
     var tweets: [Tweet] = [Tweet]()
     var maxId: Int?
     var spinner: UIActivityIndicatorView?
@@ -18,6 +20,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     var isDataLoading = false
     var timeline: Timeline!
     var user: User?
+
+    var onBackButton: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,7 +133,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     */
     @IBAction func onLogoutButton(_ sender: Any) {
-        TwitterClient.shared.logout()
+//        TwitterClient.shared.logout()
+        onBackButton?()
     }
     
 

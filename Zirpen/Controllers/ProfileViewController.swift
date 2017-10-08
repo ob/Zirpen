@@ -34,6 +34,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
     var refreshControl: UIRefreshControl?
     var isDataLoading = false
 
+    var onBackButton: (()->Void)?
+
     var tweets: [Tweet] = [Tweet]()
 
     var user: User! {
@@ -137,13 +139,13 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
 
         print("offset = \(offset)")
         if scrollView == self.scrollView  && offset > offset_tableView {
-                print("Scrolling tableView")
-                tableView.isScrollEnabled = true
-                scrollView.isScrollEnabled = false
-        } else if scrollView == self.tableView && offset <= 0 {
+            print("Scrolling tableView")
+            self.scrollView.delaysContentTouches = false
+            self.tableView.isScrollEnabled = true
+        } else if scrollView == self.tableView && offset == 0.0 {
             print("Scrolling scrollView")
-            tableView.isScrollEnabled = false
-            scrollView.isScrollEnabled = true
+            self.scrollView.delaysContentTouches = true
+            self.tableView.isScrollEnabled = false
         }
         var avatarTransform = CATransform3DIdentity
         var headerTransform = CATransform3DIdentity
@@ -187,6 +189,12 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
 
     }
 
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == self.tableView {
+            scrollView.bounces = false
+        }
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return UIStatusBarStyle.lightContent
     }
@@ -198,9 +206,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as? tweetCell {
             cell.tweet = tweets[indexPath.row]
-            cell.onAvatarTap =  { (user) in
-                self.performSegue(withIdentifier: "profileSegue", sender: user)
-            }
             return cell
         }
         assert(false)
@@ -238,6 +243,13 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate, UITableView
         }
     }
 
+    @IBAction func backButtonTapped(_ sender: Any) {
+        if onBackButton != nil {
+            onBackButton!()
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
 
 
     /*

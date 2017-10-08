@@ -24,7 +24,8 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
     var hamburgerViewController: HamburgerMenuViewController!
 
     var viewControllers: [UIViewController] = []
-    var titles = ["Timeline", "Profile", "Mentions"]
+    var titles = ["Timeline", "Profile", "Mentions", "Logout"]
+    var lastIndexPath: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +83,10 @@ class SideMenuViewController: UIViewController, UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.row == titles.count - 1 {
+            print("log out")
+            return
+        }
         hamburgerViewController.contentViewController = viewControllers[indexPath.row]
     }
     /*

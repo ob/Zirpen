@@ -18,10 +18,10 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] Profile Page
-   - [ ] Implement the paging view for the user description.
-   - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
-   - [ ] Pulling down the profile page should blur and resize the header image.
+- [x] Profile Page
+   - [x] Implement the paging view for the user description.
+   - [x] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+   - [x] Pulling down the profile page should blur and resize the header image.
 - [ ] Account switching
    - [ ] Long press on tab bar to bring up Account view with animation
    - [ ] Tap account to switch to
@@ -31,7 +31,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [ ] Profile view closely mimics Twitter's design. That is, avatar
+  image shrinks, label becomes title, text scrolls off while tableview
+  scrolls.
 
 Please list two areas of the assignment you'd like to **discuss
 further with your peers** during the next class (examples include
@@ -46,7 +48,7 @@ ways, etc):
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+ ![screenshot](/images/Zirpen-2.gif?raw=true "Screenshot of Zirpen")
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

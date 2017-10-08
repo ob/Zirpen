@@ -14,6 +14,8 @@ class HamburgerMenuViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var leftMarginConstraint: NSLayoutConstraint!
 
+    var menuIsOpen: Bool = false
+
     var menuViewController: UIViewController! {
         didSet(oldMenuViewController) {
             view.layoutIfNeeded()
@@ -47,8 +49,6 @@ class HamburgerMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +57,7 @@ class HamburgerMenuViewController: UIViewController {
     }
 
     fileprivate func closeMenu() {
+        menuIsOpen = false
         UIView.animate(withDuration: 0.3) {
             self.leftMarginConstraint.constant = 0
             self.contentView.alpha = 1.0
@@ -65,6 +66,7 @@ class HamburgerMenuViewController: UIViewController {
     }
 
     fileprivate func openMenu() {
+        menuIsOpen = true
         UIView.animate(withDuration: 0.3) {
             self.leftMarginConstraint.constant = self.view.frame.size.width - 100
             self.contentView.alpha = 0.5
@@ -78,6 +80,10 @@ class HamburgerMenuViewController: UIViewController {
         let velocity = sender.velocity(in: view)
         switch sender.state {
         case .began:
+            if velocity.x < 0  && !menuIsOpen {
+                sender.isEnabled = false
+                sender.isEnabled = true
+            }
             originalLeftMargin = leftMarginConstraint.constant
         case .changed:
             leftMarginConstraint.constant = originalLeftMargin + translation.x
